@@ -102,7 +102,6 @@ const Form = () => {
             }) => (
                 <form onSubmit={handleSubmit} onChange={handleChange}>
                     <center>
-
                         <Box
                             width="80%"
                             p="1rem"
