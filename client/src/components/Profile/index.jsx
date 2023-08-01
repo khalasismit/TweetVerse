@@ -7,7 +7,7 @@ const Profile = ({ userId }) => {
     //set usersData
     const getUser = async () => {
         const response = await fetch(`http://localhost:3001/users/${userId}/`, {
-            method: 'GET',
+            method: 'GET'
         });
         const data = await response.json();
         setUser(data);

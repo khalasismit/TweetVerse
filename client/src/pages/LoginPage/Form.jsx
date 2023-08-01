@@ -10,7 +10,7 @@ import {
 import { Formik } from "formik";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
-
+import { setLogin } from "../../state";
 // handling validation 
 const loginSchema = yup.object().shape({
     email: yup.string().email("invalid email").required("Enter Your Email"),
@@ -73,8 +73,12 @@ const Form = () => {
         )
         var loggedIn = "";
         loggedIn = await loggedInRes.json();
+        onSubmitProps.resetForm();
         if (loggedIn !== "") {
-            onSubmitProps.resetForm();
+            setLogin({
+                user: loggedIn.user,
+                token: loggedIn.token,
+            })
             navigate("/home");
         }
     }
@@ -114,7 +118,7 @@ const Form = () => {
                             <Typography textAlign="center" marginBottom="1rem" fontFamily="monospace" fontSize="1.7rem" fontWeight="bold">
                                 {isLogin ? "Sign In" : "Sign Up "}
                             </Typography>
-                            <Divider sx={{margin:"0rem 0rem 1.2rem 0rem"}} />
+                            <Divider sx={{ margin: "0rem 0rem 1.2rem 0rem" }} />
                             <Box
                                 display="grid"
                                 gap="15px"

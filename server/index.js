@@ -19,12 +19,10 @@ app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
-/* ROUTES WITH FILES */
-app.post("/auth/register", register);
-app.post("/posts", createPost);
-
 /* ROUTES */
+app.post("/auth/register", register);
 app.use("/auth/login",login );
+app.post("/posts", createPost);
 
 /* MONGOOSE SETUP */
 const PORT = process.env.PORT || 3002;

@@ -9,12 +9,9 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<LoginPage plateformName={Name}/>}>
-          </Route>
-          <Route path="/home" element={<HomePage plateformName={Name}/>}>
-          </Route>
-          <Route path="/profile" element={<ProfilePage/>} >
-          </Route>
+          <Route path="/" element={<LoginPage plateformName={Name} />} />
+          <Route path="/home" element={<HomePage plateformName={Name} />} />
+          <Route path="/profile" element={<ProfilePage />} />
         </Routes>
       </BrowserRouter>
     </div>

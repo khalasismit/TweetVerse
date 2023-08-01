@@ -4,17 +4,19 @@ import User from "../models/User.js";
 /* CREATE */
 export const createPost = async (req, res) => {
   try {
-    const { userId, description} = req.body;
+    //temporary use UserID
+    const userId ="64c78203194b05430b92edf9"
+    
     const user = await User.findById(userId);
     const newPost = new Post({
       userId,
       firstName: user.firstName,
       lastName: user.lastName,
       location: user.location,
-      description,
+      description : req.body.description,
     });
-    await newPost.save();
 
+    await newPost.save();
     const post = await Post.find();
     res.status(201).json(post);
   } catch (err) {
