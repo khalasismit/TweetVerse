@@ -114,7 +114,7 @@ const Form = () => {
                             <Typography textAlign="center" marginBottom="1rem" fontFamily="monospace" fontSize="1.7rem" fontWeight="bold">
                                 {isLogin ? "Sign In" : "Sign Up "}
                             </Typography>
-                            <Divider sx={{margin:"0rem 0rem 1.2rem 0rem" ,border:"1px solid black"}} />
+                            <Divider sx={{margin:"0rem 0rem 1.2rem 0rem"}} />
                             <Box
                                 display="grid"
                                 gap="15px"

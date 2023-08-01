@@ -11,8 +11,7 @@ const LoginPage = () => {
     justifyContent="center"
     >
       <Box
-        width="100%"
-        backgroundColor="lightgray"
+        width="100%" bgcolor="white" boxShadow="0px 0px 10px 0px black" 
         borderRadius="1rem"
         textAlign="center"
       >
