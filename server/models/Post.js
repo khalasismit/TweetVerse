@@ -1,25 +1,24 @@
 import mongoose from "mongoose";
-
 const postSchema = mongoose.Schema(
   {
     userId: {
       type: String,
-      required: true,
+      require: true,
     },
     firstName: {
       type: String,
-      required: true,
+      require: true,
     },
     lastName: {
       type: String,
-      required: true,
+      require: true,
     },
-    description:{
-        type:String,
-        required:true,
+    post: {
+      type: String,
+      require: true, 
     },
-    location:{
-      type:String,
+    location: {
+      type: String,
     },
   },
   { timestamps: true }

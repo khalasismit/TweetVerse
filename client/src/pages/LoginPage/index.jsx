@@ -21,7 +21,7 @@ const LoginPage = () => {
       </Box>
 
       <Box display="flex" justifyContent="center" flexDirection="column">
-        <Typography width="100%" p="1rem" textAlign="center" fontWeight="500" fontFamily="monospace" fontSize="1.2rem" marginBottom="1.2rem">
+        <Typography width="auto" p="1rem" textAlign="center" fontWeight="500" fontFamily="monospace" fontSize="1.2rem" marginBottom="1.2rem">
           Welcome to {plateformName}, the Social Media Application!
         </Typography>
         <Form/>
