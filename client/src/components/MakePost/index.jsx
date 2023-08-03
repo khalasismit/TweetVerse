@@ -35,7 +35,7 @@ const MakePost = () => {
     }
 
     return <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" p="1rem" m="1rem 0.5rem" textAlign="center" width={isNonMobile ? "40%" : "90%"} boxShadow="0px 0px 10px 0px black" borderRadius="1rem">
-        <form method='POST' >
+        <form method='POST' style={{width:"100%"}}>
             <Box>
                 {/* First Row */}
                 <Box display="flex" alignItems="center" gap="0.5rem" width="100%">
