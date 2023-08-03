@@ -47,8 +47,10 @@ const Form = () => {
     const isLogin = pageType === "login";
     const isRegister = pageType === "register";
     const navigate = useNavigate();
+
+    const [error,setError] = useState("");
+
     const register = async (values, onSubmitProps) => {
-        // console.log(JSON.stringify(values));
         let savedUserRes = await fetch("http://localhost:3001/auth/register",
             {
                 method: "POST",
@@ -58,8 +60,15 @@ const Form = () => {
         )
         let savedUser = await savedUserRes.json();
         onSubmitProps.resetForm();
-        if (savedUser) {
+        if (savedUser !== "Error") {
             setPageType("login");
+        }
+        else{
+            setError("User already exist with this email.");
+            // Clear the error after 3 sec
+            setTimeout(() => {
+                setError("");
+            }, 5000);
         }
     }
 
@@ -74,12 +83,19 @@ const Form = () => {
         var loggedIn = "";
         loggedIn = await loggedInRes.json();
         onSubmitProps.resetForm();
-        if (loggedIn !== "") {
+        if (loggedIn !== "Error") {
             setLogin({
                 user: loggedIn.user,
                 token: loggedIn.token,
             })
             navigate("/home");
+        }
+        else{
+            setError("Invalid credentials.");
+            // Clear the error after 3 sec
+            setTimeout(() => {
+                setError("");
+            }, 3000);
         }
     }
 
@@ -201,7 +217,7 @@ const Form = () => {
                                     sx={{ gridColumn: "span 4" }}
                                 />
                             </Box>
-
+                            <Typography color="red" p="1rem 0 0 0">{error}</Typography>
                             {/* BUTTONS */}
                             <Box display="flex"
                                 flexDirection="column"

@@ -20,7 +20,7 @@ export const register = async (req, res) => {
         await newUser.save();
         res.status(201).json(newUser);
     } catch (err) {
-        res.status(500).json({ error: err.message });
+        res.status(500).json("Error");
     }
 };
 
@@ -31,12 +31,12 @@ export const login = async (req, res) => {
         const user = await User.findOne({ email: email });
         if (!user) {
             console.log("Invalid User");
-            return res.status(400).json();
+            return res.status(400).json("Error");
         }
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch){
             console.log("Invalid Password");
-            return res.status(400).json();
+            return res.status(400).json("Error");
         } 
 
         if (isMatch) {
@@ -45,6 +45,6 @@ export const login = async (req, res) => {
             return res.status(200).json({ token, user });
         }
     } catch (err) {
-        res.status(500).json({ error: err.message });
+        res.status(500).json("Error");
     }
 };
