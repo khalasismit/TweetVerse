@@ -13,12 +13,20 @@ const MakePost = () => {
     function handleChange(event) {
         setDescription(event.target.value);
     }
+    const[error,setError] = useState("");
     const isNonMobile = useMediaQuery("(min-width:600px)")
     const _id = "64c78203194b05430b92edf9"
     // const { token } = useSelector((state)=> state.token)
     const [description, setDescription] = useState("");
     const handleMakePost = async () => {
         const data = {userId : _id ,post : description}
+        if (data.post === ""){
+            setError("*Post can not be empty");
+            setTimeout(() => {
+                setError("");
+            }, 2000);
+            return 
+        }
         const savedPostRes = await fetch("http://localhost:3001/posts", {
             method: 'POST',
             headers: {
@@ -28,7 +36,6 @@ const MakePost = () => {
         });
 
         const savedPost = await savedPostRes.json();
-        console.log("saved post:", savedPost);
         if (savedPost) {
             setDescription("");
         }
@@ -43,6 +50,7 @@ const MakePost = () => {
                     <TextField fullWidth sx={{ border: "1px solid black", m: "0", p: "0", borderRadius: "0.5rem" }} placeholder="What's in your mind?" value={description} onChange={handleChange} />
                 </Box>
                 {/* <Divider sx={{ width:"90%",margin: "1rem 0.2rem", border: "1px solid black", }} ></Divider> */}
+                <Typography sx={{color:"red",p:"0.2rem"}}>{error}</Typography>
                 {/* Second Row */}
                 <Box display="flex" alignItems="center" justifyContent="space-between" p="0.5rem" gap="0.5rem" width="100%" >
                     <Box display="flex" alignItems="center"
