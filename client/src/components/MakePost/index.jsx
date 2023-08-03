@@ -18,18 +18,13 @@ const MakePost = () => {
     // const { token } = useSelector((state)=> state.token)
     const [description, setDescription] = useState("");
     const handleMakePost = async () => {
-        const data = new FormData();
-        data.append('userId', _id);
-        data.append('post', description);
-        // 
-        // const data = {userId : _id ,post : description}
-        // console.log(data.userId);
-        // console.log(data.post);
-        // 
+        const data = {userId : _id ,post : description}
         const savedPostRes = await fetch("http://localhost:3001/posts", {
             method: 'POST',
-            body: data
-            // body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json',
+              },
+            body: JSON.stringify(data),
         });
 
         const savedPost = await savedPostRes.json();
