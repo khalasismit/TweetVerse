@@ -6,7 +6,7 @@ import dotenv from "dotenv";
 import helmet from "helmet";
 import morgan from "morgan";
 import { login, register } from "./controllers/auth.js";
-import { createPost } from "./controllers/posts.js";
+import { createPost, getFeedPosts } from "./controllers/posts.js";
 
 /* CONFIGURATIONS */
 dotenv.config();
@@ -23,6 +23,7 @@ app.use(cors());
 app.post("/auth/register", register);
 app.use("/auth/login",login );
 app.post("/posts", createPost);
+app.get("/posts",getFeedPosts);
 
 /* MONGOOSE SETUP */
 const PORT = process.env.PORT || 3002;
