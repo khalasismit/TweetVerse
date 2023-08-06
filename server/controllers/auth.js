@@ -5,17 +5,27 @@ import User from "../models/User.js";
 /* REGISTER USER */
 export const register = async (req, res) => {
     try {
+        const {
+            firstName,
+            lastName,
+            email,
+            password,
+            location,
+            bio,
+            friends
+        }=req.body;
+
         let saltRound = 10;
-        const hashedPassword = await bcrypt.hash( req.body.password , saltRound);
+        const hashedPassword = await bcrypt.hash( password , saltRound);
 
         const newUser = new User({
-            firstName:req.body.firstName,
-            lastName:req.body.lastName,
-            email:req.body.email,
+            firstName,
+            lastName,
+            email,
             password:hashedPassword,
-            friends:req.body.friends,
-            location:req.body.location,
-            bio:req.body.bio });
+            friends,
+            location,
+            bio});
 
         await newUser.save();
         res.status(201).json(newUser);

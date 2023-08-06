@@ -14,7 +14,10 @@ const GetFeedPosts = () => {
         setPosts(data);
     }
     useEffect(() => {
-        getFeedPosts()
+        getFeedPosts();
+        setInterval(() => {
+            getFeedPosts()
+        }, 2000);
     }// eslint-disable-next-line
         , []);
     return <>

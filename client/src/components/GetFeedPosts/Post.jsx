@@ -10,7 +10,7 @@ const Post = ({ firstName, lastName, location, post }) => {
     function changeLike() {
         setIsLiked(!isliked);
     }
-    return <Box display="flex" flexDirection="column" justifyContent="center" p="0.5rem 1rem" m="0.5rem" width={isNonMobile ? "40%" : "90%"} boxShadow="0px 0px 20px 0px black" borderRadius="1rem">
+    return <Box display="flex" flexDirection="column" justifyContent="center" p="0.5rem 1rem" m="0.5rem" width={isNonMobile ? "40%" : "90%"} boxShadow="0px 0px 10px 0px black" borderRadius="1rem">
         <Box display="flex" gap="1rem" p="0.5rem" m="0.2rem" width="100%">
             <Avatar></Avatar>
             <Box>
