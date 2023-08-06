@@ -14,7 +14,10 @@ const MakePost = () => {
     const [error, setError] = useState("");
     const [showProgress, setShowProgress] = useState(false);
     const isNonMobile = useMediaQuery("(min-width:600px)")
+
     const _id = "64c7df92f5df807920c01479"
+    
+    
     // const { token } = useSelector((state)=> state.token)
     const [description, setDescription] = useState("");
     const handleMakePost = async (e) => {
@@ -67,7 +70,7 @@ const MakePost = () => {
                 <LocationOnOutlinedIcon />
                 <SentimentSatisfiedOutlinedIcon />
             </Box>
-            { showProgress ? <CircularProgress /> : undefined }
+            {   showProgress ? <CircularProgress /> : undefined }
             <Button type="submit" onClick={handleMakePost} display="flex" alignItems="center" justifyContent="center" gap="0.2rem" p="0.5rem" bgcolor="lightblue" borderRadius="1rem" sx={{ textTransform:"capitalize",borderRadius:"1rem",":hover": { background: "lightgray", cursor: "pointer" } }} >
                 <SendOutlinedIcon />
                 <Typography fontFamily="monospace">Tweet</Typography>

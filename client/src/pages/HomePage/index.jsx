@@ -8,6 +8,7 @@ const HomePage = ({plateformName}) =>{
         <MakePost/>
         <Divider variant="middle"></Divider>
        <GetFeedPosts/>
+       
     </Box>
 }
 

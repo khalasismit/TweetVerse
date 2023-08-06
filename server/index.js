@@ -21,7 +21,7 @@ app.use(cors());
 
 /* ROUTES */
 app.post("/auth/register", register);
-app.use("/auth/login",login );
+app.use("/auth/login",login);
 app.post("/posts", createPost);
 app.get("/posts",getFeedPosts);
 

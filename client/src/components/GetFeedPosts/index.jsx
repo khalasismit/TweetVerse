@@ -3,8 +3,6 @@ import { useEffect, useState } from "react";
 import Post from "./Post";
 
 const GetFeedPosts = () => {
-
-    //
     const [posts, setPosts] = useState([]);
     const getFeedPosts = async () => {
         const getFeedRes = await fetch("http://localhost:3001/posts", {
