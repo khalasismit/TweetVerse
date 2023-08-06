@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, TextField, Typography, useMediaQuery } from "@mui/material";
+import { Avatar, Box, Button, CircularProgress, TextField, Typography, useMediaQuery } from "@mui/material";
 import PhotoCameraOutlinedIcon from '@mui/icons-material/PhotoCameraOutlined';
 import ImageOutlinedIcon from '@mui/icons-material/ImageOutlined';
 import AttachFileOutlinedIcon from '@mui/icons-material/AttachFileOutlined';
@@ -8,16 +8,17 @@ import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
 import { useState } from "react";
 
 const MakePost = () => {
- 
     function handleChange(event) {
         setDescription(event.target.value);
     }
     const [error, setError] = useState("");
+    const [showProgress, setShowProgress] = useState(false);
     const isNonMobile = useMediaQuery("(min-width:600px)")
     const _id = "64c7df92f5df807920c01479"
     // const { token } = useSelector((state)=> state.token)
     const [description, setDescription] = useState("");
-    const handleMakePost = async () => {
+    const handleMakePost = async (e) => {
+        e.preventDefault();
         const data = { userId: _id, post: description }
         if (data.post === "") {
             setError("*Post can not be empty");
@@ -25,6 +26,11 @@ const MakePost = () => {
                 setError("");
             }, 2000);
             return
+        }else{
+            setShowProgress(true);
+            setTimeout(() => {
+                setShowProgress(false); 
+            }, 3000);
         }
         const savedPostRes = await fetch("http://localhost:3001/posts", {
             method: 'POST',
@@ -41,7 +47,7 @@ const MakePost = () => {
     }
 
     return <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" p="1rem" m="1rem 0.5rem" textAlign="center" width={isNonMobile ? "40%" : "90%"} boxShadow="0px 0px 10px 0px black" borderRadius="1rem">
-        <form method='POST' style={{ width: "100%" }} onSubmit={handleMakePost}>
+        <form onSubmit={handleMakePost} style={{ width: "100%" }}>
             <Box>
                 {/* First Row */}
                 <Box display="flex" alignItems="center" gap="0.5rem" width="100%">
@@ -63,6 +69,7 @@ const MakePost = () => {
                         <LocationOnOutlinedIcon />
                         <SentimentSatisfiedOutlinedIcon />
                     </Box>
+                    {showProgress ? <CircularProgress /> : undefined }
                     <Button type="submit" display="flex" alignItems="center" justifyContent="center" gap="0.2rem" p="0.5rem" bgcolor="lightblue" borderRadius="1rem" sx={{ ":hover": { background: "lightgray", cursor: "pointer" } }} >
                         <SendOutlinedIcon />
                         <Typography fontFamily="monospace">Tweet</Typography>

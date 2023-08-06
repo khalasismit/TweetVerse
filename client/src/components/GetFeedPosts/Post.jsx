@@ -15,15 +15,12 @@ const Post = ({ firstName, lastName, location, post }) => {
             <Avatar></Avatar>
             <Box>
                 <Typography fontSize="1.1rem" fontWeight="bold">{lastName}.{firstName}</Typography>
-                {/* <Typography fontSize="1.1rem" fontWeight="bold">Khalasi.Curious</Typography> */}
                 <Typography>{location}</Typography>
-                {/* <Typography>Surat,Gujarat</Typography> */}
             </Box>
         </Box>
         <Divider orientation="horizontal" sx={{ m: "0rem 0.5rem" }}></Divider>
         <Box display="flex" flexDirection="column" justifyContent="space-between" width="100%">
             <Typography p="0.2rem" variant="p">{post}</Typography>
-            {/* <Typography p="0.2rem">this is Post</Typography> */}
             <Divider sx={{ m: "0.5rem 0rem" }}></Divider>
             <Box display='flex' alignItems="center" justifyContent="space-between" boxShadow="0px 0px 4px 0px black" borderRadius="1rem" width="100%">
                 <Button display="flex" alignItems="center" m="0 0.3rem" p="0.2rem" gap="0.2rem" sx={{textTransform:"initial",borderRadius:"1rem",color:"black"}}  onClick={changeLike}>

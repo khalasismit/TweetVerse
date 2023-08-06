@@ -11,7 +11,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LoginPage plateformName={Name} />} />
           <Route path="/home" element={<HomePage plateformName={Name} />} />
-          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/profile" element={<ProfilePage plateformName={Name}/>} />
         </Routes>
       </BrowserRouter>
     </div>
