@@ -10,3 +10,13 @@ export const getUser = async (req, res) => {
     res.status(404).json({ message: err.message });
   }
 };
+
+export const searchUser = async (req,res)=>{
+  try {
+    const { firstName,lastName } = req.params;
+    const user = await User.find({firstName : firstName,lastName :lastName});
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(404).json({error})
+  }
+}

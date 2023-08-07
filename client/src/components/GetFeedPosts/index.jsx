@@ -1,6 +1,6 @@
-import { Box } from "@mui/material";
 import { useEffect, useState } from "react";
 import Post from "./Post";
+import { Box } from "@mui/material";
 
 const GetFeedPosts = () => {
     const [posts, setPosts] = useState([]);
@@ -12,17 +12,19 @@ const GetFeedPosts = () => {
         setPosts(data);
     }
     useEffect(() => {
+
         getFeedPosts();
-        setInterval(() => {
-            getFeedPosts()
-        }, 2000);
+        // setInterval(() => {
+        //     getFeedPosts();
+        // }, 10000);
     }// eslint-disable-next-line
         , []);
     return <>
-        <Box width="100%" display="flex" flexDirection="column-reverse" justifyContent="center" alignItems="center" >
+        <Box sx={{display:"flex",flexDirection:"column-reverse",justifyContent:"center",width:"100%",alignItems:"center"}}>
             {
-                posts.map(({ firstName, lastName, location, post }) => (
+                posts.map(({ _id, firstName, lastName, location, post }) => (
                     <Post
+                        key={_id}
                         firstName={firstName}
                         lastName={lastName}
                         location={location}
