@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Post from "./Post";
+import Post from "../Post";
 import { Box } from "@mui/material";
 
 const GetFeedPosts = () => {
@@ -12,11 +12,10 @@ const GetFeedPosts = () => {
         setPosts(data);
     }
     useEffect(() => {
-
         getFeedPosts();
         // setInterval(() => {
         //     getFeedPosts();
-        // }, 10000);
+        // }, 3000);
     }// eslint-disable-next-line
         , []);
     return <>

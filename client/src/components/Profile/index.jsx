@@ -1,36 +1,6 @@
 import { Avatar, Box, Button, Typography} from "@mui/material";
-import { useEffect, useState } from "react";
 
-const Profile = ({ userId }) => {
-
-    const [user, setUser] = useState(null);
-    //set usersData
-    const getUser = async () => {
-        const response = await fetch(`http://localhost:3001/users/${userId}/`, {
-            method: 'GET'
-        });
-        const data = await response.json();
-        setUser(data);
-    }
-
-    useEffect(() => { 
-        getUser() 
-    }
-    // eslint-disable-next-line
-    , [] );
-
-    if (!user) {
-        return null;
-    }
-
-    const {
-        firstName,
-        lastName,
-        location,
-        bio,
-        email
-    } = user;
-
+const Profile = ({firstName,lastName,location,bio,email}) => {
     return <Box m="1rem" >
         <Box display="flex" alignItems="center" justifyContent="center" gap="1rem">
             <Avatar sx={{
