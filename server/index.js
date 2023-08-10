@@ -6,7 +6,7 @@ import dotenv from "dotenv";
 import helmet from "helmet";
 import morgan from "morgan";
 import { login, register } from "./controllers/auth.js";
-import { createPost, getFeedPosts, getUserPosts } from "./controllers/posts.js";
+import { createPost, deletePost, getFeedPosts, getUserPosts } from "./controllers/posts.js";
 import { getUser } from "./controllers/user.js";
 
 /* CONFIGURATIONS */
@@ -26,7 +26,9 @@ app.use("/auth/login",login);
 app.post("/posts", createPost);
 app.get("/posts",getFeedPosts);
 app.get("/users/:id",getUser);
-app.get("/users/:id",getUserPosts);
+app.get("/posts/:userId/posts",getUserPosts);
+app.get("/posts/:userId/posts/:id",deletePost);
+
 /* MONGOOSE SETUP */
 const PORT = process.env.PORT || 3002;
 mongoose

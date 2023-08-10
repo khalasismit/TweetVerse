@@ -32,10 +32,22 @@ export const getFeedPosts = async (req,res) => {
 
 export const getUserPosts = async (req, res) => {
   try {
-    const { userId } = req.params;
-    const post = await Post.find({ userId });
+    const { id } = req.params;
+    const post = await Post.find({userId : id});
     res.status(200).json(post);
   } catch (err) {
     res.status(404).json({ message: err.message });
   }
 }; 
+
+// Delete Post 
+
+export const deletePost = async (req,res) =>{
+  try {
+      const { userId , id } = req.params;
+      await Post.findByIdAndDelete({userId:userId,_id:id}); 
+      res.status(200).json("POST DELETED")
+  } catch (error) {
+    res.status(404).json(error)
+  }
+}

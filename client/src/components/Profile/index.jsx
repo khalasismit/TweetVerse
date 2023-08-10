@@ -1,24 +1,40 @@
-import { Avatar, Box, Button, Typography} from "@mui/material";
+import { Avatar, Box, Button, Divider, Typography } from "@mui/material";
+import { useMediaQuery } from "@mui/material";
 
-const Profile = ({firstName,lastName,location,bio,email}) => {
-    return <Box m="1rem" >
-        <Box display="flex" alignItems="center" justifyContent="center" gap="1rem">
-            <Avatar sx={{
-                p: "3rem",
-                m: "1.5rem 4rem"
-            }} ></Avatar>
-            <Box>
-                <Box display="flex" alignItems="center" gap="1rem"  marginBottom="1rem"> 
-                <Typography fontSize="1rem" fontWeight="Bold" textTransform={"capitalize"}>
-                    {firstName} {lastName}
-                </Typography>
-                <Button sx={{color:"black",background:"lightgray", textTransform:"capitalize"}}>Edit profile</Button>  
+const Profile = ({ firstName, lastName, location, bio}) => {
+    const isNonMobile = useMediaQuery("(min-width:600px)")
+    return <>
+        <Box width={isNonMobile ? "auto" : "80%"} sx={{ m: "1rem 0", p: "1rem 2rem", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", boxShadow: "0px 0px 10px 0px black", borderRadius: "1rem" }}>
+            {/* First row */}
+            <Box sx={{ display: "flex", gap: "2.5rem", m: "1rem 0" }}>
+                <Box>
+                    <Avatar sx={{ p: "2rem" }}></Avatar>
                 </Box>
-                    <Typography sx={{ fontSize: "1rem"}}>{email}</Typography>
-                    <Typography sx={{ fontSize: "1rem"}}>{bio}</Typography>
-                    <Typography sx={{ fontSize: "1rem"}}>{location}</Typography>
+                <Box>
+                    {/* <Typography sx={{fontFamily:"monospace",fontSize:"1.5rem"}}>Curious khalasi</Typography> */}
+                    <Typography sx={{fontFamily:"monospace",fontSize:"1.5rem"}}>{firstName} {lastName}</Typography>
+                    {/* <Typography sx={{fontFamily:"monospace",fontSize:"1rem"}}>Surat, Gujarat</Typography> */}
+                    <Typography sx={{fontFamily:"monospace",fontSize:"1rem"}}>{location}</Typography>
+                </Box>
             </Box>
+            <Divider orientation="horizontal" sx={{ m: "1rem 0rem", width: "100%", }} />
+            {/* Second row */}
+            <Box >
+                {/* <Typography sx={{fontFamily:"monospace"}}>
+                    LOST IN SPACE🚀
+                </Typography>
+                <Typography sx={{fontFamily:"monospace"}}>
+                    ANIME ❤️
+                </Typography>
+                <Typography sx={{fontFamily:"monospace"}}>
+                    NyctoPhile
+                </Typography> */}
+                <Typography sx={{fontFamily:"monospace"}}>{bio}</Typography>
+            </Box>
+            <Divider orientation="horizontal" sx={{ m: "1rem 0rem", width: "100%", }} />
+            <Button sx={{ color: "black", bgcolor: "lightgrey", width: "100%", ":hover": { bgcolor: "darkgray" } }}><Typography sx={{fontFamily:"monospace",textTransform:"initial"}}>
+                Edit Profile</Typography></Button>
         </Box>
-    </Box>
+    </>
 }
 export default Profile;

@@ -6,21 +6,17 @@ import SentimentSatisfiedOutlinedIcon from '@mui/icons-material/SentimentSatisfi
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
 import { useState } from "react";
-const MakePost = () => {
+const MakePost = ({userId}) => {
     function handleChange(event) {
         setDescription(event.target.value);
     }
     const [error, setError] = useState("");
     const [showProgress, setShowProgress] = useState(false);
     const isNonMobile = useMediaQuery("(min-width:600px)")
-
-    const _id = "64c7df92f5df807920c01479"
-
-
     // const { token } = useSelector((state)=> state.token)
     const [description, setDescription] = useState("");
     const handleMakePost = async (e) => {
-        const data = { userId: _id, post: description }
+        const data = { userId: userId, post: description }
         if (data.post === "") {
             setError("*Post can not be empty");
             setTimeout(() => {
