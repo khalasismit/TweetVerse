@@ -40,7 +40,6 @@ const initialValuesRegister = {
     bio: "",
 };
 
-
 const Form = () => {
     const [pageType, setPageType] = useState("login");
     const isNonMobile = useMediaQuery("(min-width:600px)");
@@ -132,7 +131,7 @@ const Form = () => {
                             borderRadius="1rem"
                         >
                             <Typography textAlign="center" marginBottom="1rem" fontFamily="monospace" fontSize="1.7rem" fontWeight="bold">
-                                {isLogin ? "Sign In" : "Sign Up "}
+                                { isLogin ? "Sign In" : "Sign Up " }
                             </Typography>
                             <Divider sx={{ margin: "0rem 0rem 1.2rem 0rem" }} />
                             <Box

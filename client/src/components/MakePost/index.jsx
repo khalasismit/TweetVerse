@@ -7,6 +7,7 @@ import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
 import { useState } from "react";
 const MakePost = ({userId}) => {
+    
     function handleChange(event) {
         setDescription(event.target.value);
     }
@@ -15,6 +16,7 @@ const MakePost = ({userId}) => {
     const isNonMobile = useMediaQuery("(min-width:600px)")
     // const { token } = useSelector((state)=> state.token)
     const [description, setDescription] = useState("");
+
     const handleMakePost = async (e) => {
         const data = { userId: userId, post: description }
         if (data.post === "") {

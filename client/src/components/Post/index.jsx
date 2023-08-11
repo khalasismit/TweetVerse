@@ -38,7 +38,7 @@ const Post = ({ userId, firstName, lastName, location, post, postId, deleteIcon 
             <Divider orientation="horizontal" sx={{ m: "0rem 0.5rem" }}></Divider>
             <Box display="flex" flexDirection="column" justifyContent="space-between" width="100%">
                 {Post.split('\n').map((line, index) => {
-                    return <Typography p="0.2rem" variant="p" key={index}>
+                    return <Typography p="0.2rem"  key={index}>
                         {line}
                         <br />
                     </Typography>
