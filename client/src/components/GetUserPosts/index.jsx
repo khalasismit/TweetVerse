@@ -19,6 +19,7 @@ const GetUserPost = ({id}) => {
         {
             posts.map(({ _id, firstName, lastName, location, post }) => (
                 <Post
+                    deleteIcon
                     userId={id}
                     key={_id}
                     postId={_id}

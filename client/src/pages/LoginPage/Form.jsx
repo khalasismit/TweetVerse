@@ -184,6 +184,7 @@ const Form = () => {
                                             onChange={handleChange}
                                             value={values.bio}
                                             name="bio"
+                                            multiline
                                             error={
                                                 Boolean(touched.bio) && Boolean(errors.bio)
                                             }

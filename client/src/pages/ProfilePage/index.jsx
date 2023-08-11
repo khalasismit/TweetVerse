@@ -1,11 +1,10 @@
-import { Box, useMediaQuery } from "@mui/material";
+import { Box } from "@mui/material";
 import Profile from "../../components/Profile";
 import { useEffect, useState } from "react";
 import GetUserPost from "../../components/GetUserPosts";
 import Navigate from "../../components/Navigate";
 
 const ProfilePage = ({ userId, plateformName }) => {
-    const isNonMobile = useMediaQuery("(min-width:600px)")
     const [user, setUser] = useState([]);
     //set usersData
     const getUser = async () => {
@@ -18,9 +17,7 @@ const ProfilePage = ({ userId, plateformName }) => {
 
     useEffect(() => {
         getUser()
-    }
-        // eslint-disable-next-line
-        , []);
+    }, []);// eslint-disable-line
 
     if (!user) {
         return null;
@@ -33,7 +30,7 @@ const ProfilePage = ({ userId, plateformName }) => {
         bio,
         email
     } = user;
-    console.log(userId)
+    // console.log(userId)
 
     return <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" width="100%" >
         <Navigate plateformName={plateformName} />

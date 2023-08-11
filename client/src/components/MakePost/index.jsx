@@ -49,7 +49,7 @@ const MakePost = ({userId}) => {
             {/* First Row */}
             <Box display="flex" alignItems="center" gap="0.5rem" width="100%">
                 <Avatar></Avatar>
-                <TextField fullWidth sx={{ border: "1px solid black", m: "0", p: "0", borderRadius: "0.5rem" }} placeholder="What's in your mind?" value={description} onChange={handleChange} />
+                <TextField multiline fullWidth sx={{ border: "1px solid black", m: "0", p: "0", borderRadius: "0.5rem" }} placeholder="What's in your mind?" value={description} onChange={handleChange} />
             </Box>
             {/* <Divider sx={{ width:"90%",margin: "1rem 0.2rem", border: "1px solid black", }} ></Divider> */}
             <Typography sx={{ color: "red", p: "0.2rem" }}>{error}</Typography>

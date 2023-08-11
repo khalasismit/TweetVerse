@@ -23,6 +23,7 @@ const GetFeedPosts = () => {
             {
                 posts.map(({ _id, firstName, lastName, location, post }) => (
                     <Post
+                        deleteIcon={false}
                         key={_id}
                         firstName={firstName}
                         lastName={lastName}
