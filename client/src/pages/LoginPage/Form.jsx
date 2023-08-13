@@ -10,7 +10,7 @@ import {
 import { Formik } from "formik";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
-import { setLogin } from "../../state";
+import { SETUSER } from "../../state/auth";
 // handling validation 
 const loginSchema = yup.object().shape({
     email: yup.string().email("invalid email").required("Enter Your Email"),
@@ -47,7 +47,7 @@ const Form = () => {
     const isRegister = pageType === "register";
     const navigate = useNavigate();
 
-    const [error,setError] = useState("");
+    const [error, setError] = useState("");
 
     const register = async (values, onSubmitProps) => {
         let savedUserRes = await fetch("http://localhost:3001/auth/register",
@@ -62,7 +62,7 @@ const Form = () => {
         if (savedUser !== "Error") {
             setPageType("login");
         }
-        else{
+        else {
             setError("User already exist with this email.");
             // Clear the error after 3 sec
             setTimeout(() => {
@@ -83,13 +83,10 @@ const Form = () => {
         loggedIn = await loggedInRes.json();
         onSubmitProps.resetForm();
         if (loggedIn !== "Error") {
-            setLogin({
-                user: loggedIn.user,
-                token: loggedIn.token,
-            })
+            SETUSER(loggedIn.user._id,loggedIn.token)
             navigate("/home");
         }
-        else{
+        else {
             setError("Invalid credentials.");
             // Clear the error after 3 sec
             setTimeout(() => {
@@ -131,7 +128,7 @@ const Form = () => {
                             borderRadius="1rem"
                         >
                             <Typography textAlign="center" marginBottom="1rem" fontFamily="monospace" fontSize="1.7rem" fontWeight="bold">
-                                { isLogin ? "Sign In" : "Sign Up " }
+                                {isLogin ? "Sign In" : "Sign Up "}
                             </Typography>
                             <Divider sx={{ margin: "0rem 0rem 1.2rem 0rem" }} />
                             <Box

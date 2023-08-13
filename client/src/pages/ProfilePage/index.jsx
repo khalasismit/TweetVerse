@@ -3,13 +3,17 @@ import Profile from "../../components/Profile";
 import { useEffect, useState } from "react";
 import GetUserPost from "../../components/GetUserPosts";
 import Navigate from "../../components/Navigate";
-
-const ProfilePage = ({ userId, plateformName }) => {
+import { GETUSER } from "../../state/auth";
+const ProfilePage = ({ plateformName }) => {
     const [user, setUser] = useState([]);
+    // const token = localStorage.getItem("token")
+    // const token = useSelector((state)=> state.user)
     //set usersData
+    const userId = GETUSER();
     const getUser = async () => {
         const response = await fetch(`http://localhost:3001/users/${userId}/`, {
-            method: 'GET'
+            method : 'GET',
+            // headers : {token:`Bearer ${token}`}
         });
         const data = await response.json();
         setUser(data);

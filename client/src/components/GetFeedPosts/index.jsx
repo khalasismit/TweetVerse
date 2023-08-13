@@ -11,13 +11,17 @@ const GetFeedPosts = () => {
         const data = await getFeedRes.json();
         setPosts(data);
     }
+
     useEffect(() => {
         getFeedPosts();
         // setInterval(() => {
         //     getFeedPosts();
         // }, 3000);
-    }// eslint-disable-next-line
-        , []);
+    }
+    , []);
+    // eslint-disable-next-line
+    // hh
+    
     return <>
         <Box sx={{display:"flex",flexDirection:"column-reverse",justifyContent:"center",width:"100%",alignItems:"center"}}>
             {

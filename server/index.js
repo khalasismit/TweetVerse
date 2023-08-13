@@ -22,17 +22,17 @@ app.use(cors());
 
 /* ROUTES */
 app.post("/auth/register", register);
-app.use("/auth/login",login);
+app.post("/auth/login",login);
+app.get("/users/:id",getUser);
 app.post("/posts", createPost);
 app.get("/posts",getFeedPosts);
-app.get("/users/:id",getUser);
 app.get("/posts/:userId/posts",getUserPosts);
 app.get("/posts/:userId/posts/:id",deletePost);
 
 /* MONGOOSE SETUP */
 const PORT = process.env.PORT || 3002;
-mongoose
-  .connect(process.env.MONGO_URL, {
+
+mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
