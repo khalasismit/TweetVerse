@@ -1,12 +1,16 @@
 import { Box } from "@mui/material";
 import { useEffect, useState } from "react";
 import Post from "../Post";
+import { useSelector } from "react-redux";
 
-const GetUserPost = ({id}) => {
+const GetUserPost = () => {
+    const userId = useSelector((state)=>state.user._id)
+    const token = useSelector((state)=>state.token)
     const [posts,setPosts] = useState([])    
     const getUserPost = async ()=>{
-        const getUserPostRes = await fetch(`http://localhost:3001/posts/${id}/posts`,{
+        const getUserPostRes = await fetch(`http://localhost:3001/posts/${userId}/posts`,{
             method:"GET",
+            headers:{Authorization :`Bearer ${token}`}
         })
         const data = await getUserPostRes.json();
         setPosts(data);
@@ -20,7 +24,7 @@ const GetUserPost = ({id}) => {
             posts.map(({ _id, firstName, lastName, location, post }) => (
                 <Post
                     deleteIcon
-                    userId={id}
+                    userId={userId}
                     key={_id}
                     postId={_id}
                     firstName={firstName}

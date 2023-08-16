@@ -5,10 +5,12 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 const Post = ({ userId, firstName, lastName, location, post, postId, deleteIcon }) => {
     const isNonMobile = useMediaQuery("(min-width:600px)")
     const [isliked, setIsLiked] = useState(false);
     const [Post, setPost] = useState('');
+    const token = useSelector((state)=>state.token)
     useEffect(() => {
         setPost(post);
     }, []); //eslint-disable-line   
@@ -18,7 +20,8 @@ const Post = ({ userId, firstName, lastName, location, post, postId, deleteIcon 
 
     const deletePost = async () => {
         const deletePostRes = await fetch(`http://localhost:3001/posts/${userId}/posts/${postId}`, {
-            method: "GET"
+            method: "GET",
+            headers:{Authorization:`Bearer ${token}`}
         })
         console.log(deletePostRes);
     }

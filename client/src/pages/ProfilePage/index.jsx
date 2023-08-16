@@ -3,17 +3,17 @@ import Profile from "../../components/Profile";
 import { useEffect, useState } from "react";
 import GetUserPost from "../../components/GetUserPosts";
 import Navigate from "../../components/Navigate";
-import { GETUSER } from "../../state/auth";
+import { useSelector } from "react-redux";
 const ProfilePage = ({ plateformName }) => {
+
     const [user, setUser] = useState([]);
-    // const token = localStorage.getItem("token")
-    // const token = useSelector((state)=> state.user)
+    const {_id}= useSelector((state)=>state.user);
+    const token = useSelector((state) =>state.token)
     //set usersData
-    const userId = GETUSER();
     const getUser = async () => {
-        const response = await fetch(`http://localhost:3001/users/${userId}/`, {
+        const response = await fetch(`http://localhost:3001/users/${_id}/`, {
             method : 'GET',
-            // headers : {token:`Bearer ${token}`}
+            headers : {Authorization :`Bearer ${token}`},
         });
         const data = await response.json();
         setUser(data);
@@ -40,7 +40,7 @@ const ProfilePage = ({ plateformName }) => {
         <Navigate plateformName={plateformName} />
         <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" width="100%" >
             <Profile firstName={firstName} lastName={lastName} location={location} bio={bio} email={email} />
-            <GetUserPost id={userId} />
+            <GetUserPost />
         </Box>
     </Box>
 }

@@ -6,8 +6,13 @@ import SentimentSatisfiedOutlinedIcon from '@mui/icons-material/SentimentSatisfi
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
 import { useState } from "react";
-const MakePost = ({userId}) => {
-    
+import { useSelector } from "react-redux"; 
+// import { GetUser } from "../../redux/auth";
+const MakePost = () => {
+    // const { id, token } = GetUser();
+    const {_id}  = useSelector((state) => state.user);
+    const token = useSelector((state) => state.token);
+    // console.log(_id,token)
     function handleChange(event) {
         setDescription(event.target.value);
     }
@@ -16,9 +21,9 @@ const MakePost = ({userId}) => {
     const isNonMobile = useMediaQuery("(min-width:600px)")
     // const { token } = useSelector((state)=> state.token)
     const [description, setDescription] = useState("");
-
+    
     const handleMakePost = async (e) => {
-        const data = { userId: userId, post: description }
+        const data = { userId: _id, post: description }
         if (data.post === "") {
             setError("*Post can not be empty");
             setTimeout(() => {
@@ -36,10 +41,10 @@ const MakePost = ({userId}) => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
             },
             body: JSON.stringify(data),
         });
-
         const savedPost = await savedPostRes.json();
         if (savedPost) {
             setDescription("");

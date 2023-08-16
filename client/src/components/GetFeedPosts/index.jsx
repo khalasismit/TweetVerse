@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import Post from "../Post";
 import { Box } from "@mui/material";
+import { useSelector } from "react-redux";
 
 const GetFeedPosts = () => {
     const [posts, setPosts] = useState([]);
+    const token = useSelector((state)=>state.token);
     const getFeedPosts = async () => {
         const getFeedRes = await fetch("http://localhost:3001/posts", {
             method: "GET",
+            headers:{Authorization: `Bearer ${token}`}
         });
         const data = await getFeedRes.json();
         setPosts(data);
@@ -18,8 +21,8 @@ const GetFeedPosts = () => {
         //     getFeedPosts();
         // }, 3000);
     }
-    , []);
     // eslint-disable-next-line
+    , []);
     // hh
     
     return <>

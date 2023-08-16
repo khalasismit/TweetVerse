@@ -10,7 +10,10 @@ import {
 import { Formik } from "formik";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
-import { SETUSER } from "../../state/auth";
+import { setUserLogin } from "../../redux/auth";
+import { setLogin } from "../../redux/reducers";
+import { useDispatch } from "react-redux"
+
 // handling validation 
 const loginSchema = yup.object().shape({
     email: yup.string().email("invalid email").required("Enter Your Email"),
@@ -41,13 +44,14 @@ const initialValuesRegister = {
 };
 
 const Form = () => {
+
     const [pageType, setPageType] = useState("login");
     const isNonMobile = useMediaQuery("(min-width:600px)");
     const isLogin = pageType === "login";
     const isRegister = pageType === "register";
     const navigate = useNavigate();
-
     const [error, setError] = useState("");
+    const dispatch = useDispatch();
 
     const register = async (values, onSubmitProps) => {
         let savedUserRes = await fetch("http://localhost:3001/auth/register",
@@ -83,7 +87,13 @@ const Form = () => {
         loggedIn = await loggedInRes.json();
         onSubmitProps.resetForm();
         if (loggedIn !== "Error") {
-            SETUSER(loggedIn.user._id,loggedIn.token)
+            setUserLogin(loggedIn.user._id,loggedIn.token)
+            dispatch(
+                setLogin({
+                    user: loggedIn.user,
+                    token: loggedIn.token
+                })
+            );
             navigate("/home");
         }
         else {
@@ -94,7 +104,6 @@ const Form = () => {
             }, 3000);
         }
     }
-
     const handleFormSubmit = async (values, onSubmitProps) => {
         if (isLogin) { await login(values, onSubmitProps); }
         if (isRegister) { await register(values, onSubmitProps) };

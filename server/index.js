@@ -8,7 +8,7 @@ import morgan from "morgan";
 import { login, register } from "./controllers/auth.js";
 import { createPost, deletePost, getFeedPosts, getUserPosts } from "./controllers/posts.js";
 import { getUser } from "./controllers/user.js";
-
+import { verifyToken } from "./middleware/verifyToken.js";
 /* CONFIGURATIONS */
 dotenv.config();
 const app = express();
@@ -23,11 +23,11 @@ app.use(cors());
 /* ROUTES */
 app.post("/auth/register", register);
 app.post("/auth/login",login);
-app.get("/users/:id",getUser);
-app.post("/posts", createPost);
-app.get("/posts",getFeedPosts);
-app.get("/posts/:userId/posts",getUserPosts);
-app.get("/posts/:userId/posts/:id",deletePost);
+app.get("/users/:id",verifyToken,getUser);
+app.post("/posts",verifyToken,createPost);
+app.get("/posts",verifyToken,getFeedPosts);
+app.get("/posts/:userId/posts",verifyToken,getUserPosts);
+app.get("/posts/:userId/posts/:id",verifyToken,deletePost);
 
 /* MONGOOSE SETUP */
 const PORT = process.env.PORT || 3002;
