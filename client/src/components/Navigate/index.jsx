@@ -7,12 +7,12 @@ const Navigate = ({ plateformName }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const handleLogout = () => {
-        dispatch(setLogout())
         setSnackbar(true)
         setTimeout(() => {
             setSnackbar(false)
-        }, 3000);
-        navigate("/")
+            dispatch(setLogout())
+            navigate("/")
+        }, 1500);
     }
     const [snackbar,setSnackbar] = useState(false)
     return <Box width="100%">
@@ -20,7 +20,7 @@ const Navigate = ({ plateformName }) => {
             open={snackbar}
             varient="filled"
             autoHideDuration={3000}
-            anchorOrigin={{ vertical: "top", horizontal: "right" }}
+            anchorOrigin={{ vertical:'bottom', horizontal: "left" }}
         ><Alert variant="filled" severity="success">Log out </Alert></Snackbar>
 
         <Box display="flex" alignItems="center" justifyContent="space-between" bgcolor="white" boxShadow="0px 0px 10px 0px black" padding="0rem 1.2rem" borderRadius="1rem">

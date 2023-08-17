@@ -70,7 +70,7 @@ const Form = () => {
             setTimeout(() => {
                 setSnackbar(false)
                 setPageType("login");
-            }, 3000); 
+            }, 2000); 
         }
         else {
             setError("User already exist with this email.");
@@ -104,7 +104,7 @@ const Form = () => {
             setTimeout(() => {
                 setSnackbar(false)
                 navigate("/home");
-            }, 3000); 
+            }, 2000); 
         }
         else {
             setError("Invalid credentials.");
@@ -140,7 +140,7 @@ const Form = () => {
                         open={snackbar}
                         varient="filled"
                         autoHideDuration={3000}
-                        anchorOrigin={{vertical:"top",horizontal:"right"}}
+                        anchorOrigin={{vertical:"bottom",horizontal:"left"}}
                     ><Alert variant="filled" severity="success">{isRegister ? "REGISTRATION COMPLETE" : "LOGIN SUCCESS"}</Alert></Snackbar>
                     <center>
                         <Box
