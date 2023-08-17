@@ -12,7 +12,9 @@ import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { setUserLogin } from "../../redux/auth";
 import { setLogin } from "../../redux/reducers";
-import { useDispatch } from "react-redux"
+import { useDispatch } from "react-redux";
+import Alert from "@mui/material/Alert";
+import Snackbar from "@mui/material/Snackbar";
 
 // handling validation 
 const loginSchema = yup.object().shape({
@@ -52,7 +54,7 @@ const Form = () => {
     const navigate = useNavigate();
     const [error, setError] = useState("");
     const dispatch = useDispatch();
-
+    const [snackbar, setSnackbar] = useState(false);
     const register = async (values, onSubmitProps) => {
         let savedUserRes = await fetch("http://localhost:3001/auth/register",
             {
@@ -64,14 +66,18 @@ const Form = () => {
         let savedUser = await savedUserRes.json();
         onSubmitProps.resetForm();
         if (savedUser !== "Error") {
-            setPageType("login");
+            setSnackbar(true)
+            setTimeout(() => {
+                setSnackbar(false)
+                setPageType("login");
+            }, 3000); 
         }
         else {
             setError("User already exist with this email.");
             // Clear the error after 3 sec
             setTimeout(() => {
                 setError("");
-            }, 5000);
+            }, 3000);
         }
     }
 
@@ -87,14 +93,18 @@ const Form = () => {
         loggedIn = await loggedInRes.json();
         onSubmitProps.resetForm();
         if (loggedIn !== "Error") {
-            setUserLogin(loggedIn.user._id,loggedIn.token)
+            setSnackbar(true);
+            setUserLogin(loggedIn.user._id, loggedIn.token)
             dispatch(
                 setLogin({
                     user: loggedIn.user,
                     token: loggedIn.token
                 })
             );
-            navigate("/home");
+            setTimeout(() => {
+                setSnackbar(false)
+                navigate("/home");
+            }, 3000); 
         }
         else {
             setError("Invalid credentials.");
@@ -126,6 +136,12 @@ const Form = () => {
                 resetForm,
             }) => (
                 <form onSubmit={handleSubmit} onChange={handleChange}>
+                    <Snackbar
+                        open={snackbar}
+                        varient="filled"
+                        autoHideDuration={3000}
+                        anchorOrigin={{vertical:"top",horizontal:"right"}}
+                    ><Alert variant="filled" severity="success">{isRegister ? "REGISTRATION COMPLETE" : "LOGIN SUCCESS"}</Alert></Snackbar>
                     <center>
                         <Box
                             width="80%"
@@ -244,7 +260,6 @@ const Form = () => {
                                     <Typography fontFamily="monospace">
                                         {isLogin ? "LOGIN" : "REGISTER"}
                                     </Typography>
-
                                 </Button>
                                 <Typography
                                     onClick={() => {
