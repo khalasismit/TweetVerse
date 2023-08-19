@@ -34,8 +34,7 @@ const Navigate = ({ plateformName }) => {
                     onClick={handleLogout}
                     sx={{
                         textTransform: "initial",
-                        border: "1px solid black",
-                        borderRadius: "2rem",
+                        borderRadius: "0.5rem",
                         backgroundColor: "lightgray",
                         color: "black",
                         "&:hover": { color: "black" },

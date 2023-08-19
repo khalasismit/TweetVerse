@@ -49,15 +49,12 @@ const Post = ({ userId, firstName, lastName, location, post, postId, deleteIcon 
             <Box sx={{ display: 'flex', alignItems: "center", justifyContent: "space-between", boxShadow: "0px 0px 4px 0px black", borderRadius: "1rem", width: "100%" }} >
                 <Button  m="0 0.3rem" p="0.2rem" gap="0.2rem" sx={{ display:"flex" ,alignItems:"center",textTransform: "initial", borderRadius: "1rem", color: "black" }} onClick={changeLike}>
                     {isliked ? <FavoriteIcon sx={{ color: "red" }} /> : <FavoriteBorderOutlinedIcon />}
-                    {/* <Typography color="black">likes</Typography> */}
                 </Button>
                 <Button m="0 0.3rem" p="0.2rem" gap="0.2rem" sx={{ display:"flex" ,alignItems:"center",textTransform: "initial", borderRadius: "1rem", color: "black" }}>
                     <CommentOutlinedIcon />
-                    {/* <Typography>Comment</Typography> */}
                 </Button>
                 <Button m="0 0.3rem" p="0.2rem" gap="0.2rem" sx={{ display:"flex" ,alignItems:"center",textTransform: "initial", borderRadius: "1rem", color: "black" }}>
                     <ShareOutlinedIcon />
-                    {/* <Typography>Share</Typography> */}
                 </Button>
             </Box>
         </Box>

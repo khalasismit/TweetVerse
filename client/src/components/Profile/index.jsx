@@ -5,7 +5,7 @@ const Profile = ({ firstName, lastName, location, bio }) => {
     const isNonMobile = useMediaQuery("(min-width:600px)")
     return <Box width={isNonMobile ? "auto" : "80%"} sx={{ m: "1rem 0", p: "1rem 2rem", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", boxShadow: "0px 0px 10px 0px black", borderRadius: "1rem" }}>
         {/* First row */}
-        <Box sx={{ display: "flex", gap: "2.5rem", m: "1rem 0" }}>
+        <Box sx={{ display: "flex", gap: "2.5rem", m: "0.2rem 0" }}>
             <Box>
                 <Avatar sx={{ p: "2rem" }}></Avatar>
             </Box>

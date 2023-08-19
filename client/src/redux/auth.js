@@ -10,4 +10,3 @@ export const setUserLogout = () => {
 export const GetUser = () => {
     return { id: localStorage.getItem("id"), token: localStorage.getItem("token") }
 }
-

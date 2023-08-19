@@ -34,6 +34,7 @@ const registerSchema = yup.object().shape({
     password: yup.string().min(5).required("Enter Password"),
     location: yup.string().required("required"),
     bio: yup.string().max(60).required("Tell us about yourself."),
+    confirmPassword: yup.string().oneOf([yup.ref('password'),null],"Confirm Password is Incorrect").required("Confirm Password is Required")
 });
 
 const initialValuesRegister = {
@@ -43,6 +44,7 @@ const initialValuesRegister = {
     password: "",
     location: "",
     bio: "",
+    confirmPassword:""
 };
 
 const Form = () => {
@@ -238,6 +240,21 @@ const Form = () => {
                                     helperText={touched.password && errors.password}
                                     sx={{ gridColumn: "span 4" }}
                                 />
+                                {isRegister &&(
+                                    <TextField
+                                    fullWidth
+                                    label="Confirm Password"
+                                    onBlur={handleBlur}
+                                    onChange={handleChange}
+                                    value={values.confirmPassword}
+                                    name="confirmPassword"
+                                    error={
+                                        Boolean(touched.confirmPassword) && Boolean(errors.confirmPassword)
+                                    }
+                                    helperText={touched.confirmPassword && errors.confirmPassword}
+                                    sx={{ gridColumn: "span 4" }}
+                                />
+                                )}
                             </Box>
                             <Typography color="red" p="1rem 0 0 0">{error}</Typography>
                             {/* BUTTONS */}

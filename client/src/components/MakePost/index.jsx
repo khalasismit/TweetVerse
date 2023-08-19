@@ -47,7 +47,7 @@ const MakePost = () => {
         });
         const savedPost = await savedPostRes.json();
         if (savedPost) {
-            setDescription("");
+            setDescription(""); 
         }
     }
 
