@@ -25,8 +25,7 @@ const GetFeedPosts = () => {
     , []);
     // hh
     
-    return <>
-        <Box sx={{display:"flex",flexDirection:"column-reverse",justifyContent:"center",width:"100%",alignItems:"center"}}>
+    return <Box sx={{display:"flex",flexDirection:"column-reverse",justifyContent:"center",width:"100%",alignItems:"center"}}>
             {
                 posts.map(({ _id, firstName, lastName, location, post }) => (
                     <Post
@@ -39,6 +38,5 @@ const GetFeedPosts = () => {
                 ))
             }
         </Box>
-    </>
 }
 export default GetFeedPosts;

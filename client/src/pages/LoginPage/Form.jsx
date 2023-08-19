@@ -70,7 +70,7 @@ const Form = () => {
             setTimeout(() => {
                 setSnackbar(false)
                 setPageType("login");
-            }, 2000); 
+            }, 1500); 
         }
         else {
             setError("User already exist with this email.");
@@ -104,7 +104,7 @@ const Form = () => {
             setTimeout(() => {
                 setSnackbar(false)
                 navigate("/home");
-            }, 2000); 
+            }, 1500); 
         }
         else {
             setError("Invalid credentials.");

@@ -12,7 +12,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<LoginPage plateformName={Name} />} />
+          <Route path="/" element={isAuth ? <Navigate to={"/home"}></Navigate> : <LoginPage plateformName={Name} />} />
           <Route path="/home" element={isAuth ? <HomePage plateformName={Name} /> : <Navigate to={"/"}></Navigate>} />
           <Route path="/profile" element={isAuth ? <ProfilePage plateformName={Name} /> : <Navigate to={"/"}></Navigate>}></Route>
           {/* <Route path="/Admin" element={<AdminPanel/>} /> */}

@@ -6,11 +6,11 @@ import SentimentSatisfiedOutlinedIcon from '@mui/icons-material/SentimentSatisfi
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
 import { useState } from "react";
-import { useSelector } from "react-redux"; 
+import { useSelector } from "react-redux";
 // import { GetUser } from "../../redux/auth";
 const MakePost = () => {
     // const { id, token } = GetUser();
-    const {_id}  = useSelector((state) => state.user);
+    const { _id } = useSelector((state) => state.user);
     const token = useSelector((state) => state.token);
     // console.log(_id,token)
     function handleChange(event) {
@@ -21,7 +21,7 @@ const MakePost = () => {
     const isNonMobile = useMediaQuery("(min-width:600px)")
     // const { token } = useSelector((state)=> state.token)
     const [description, setDescription] = useState("");
-    
+
     const handleMakePost = async (e) => {
         const data = { userId: _id, post: description }
         if (data.post === "") {
@@ -51,35 +51,34 @@ const MakePost = () => {
         }
     }
 
-    return <>
-        <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" p="1rem" m="1rem 0.5rem" textAlign="center" width={isNonMobile ? "40%" : "90%"} boxShadow="0px 0px 10px 0px black" borderRadius="1rem">
-            {/* First Row */}
-            <Box display="flex" alignItems="center" gap="0.5rem" width="100%">
-                <Avatar></Avatar>
-                <TextField multiline fullWidth sx={{ border: "1px solid black", m: "0", p: "0", borderRadius: "0.5rem" }} placeholder="What's in your mind?" value={description} onChange={handleChange} />
+    return <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", p: "1rem", m: "1rem 0.5rem", textAlign: "center", width: isNonMobile ? "40%" : "90%", boxShadow: "0px 0px 10px 0px black", borderRadius: "1rem" }} >
+        {/* First Row */}
+        <Box display="flex" alignItems="center" gap="0.5rem" width="100%">
+            <Avatar></Avatar>
+            <TextField multiline fullWidth sx={{ border: "1px solid black", m: "0", p: "0", borderRadius: "0.5rem" }} placeholder="What's in your mind?" value={description} onChange={handleChange} />
+        </Box>
+        {/* <Divider sx={{ width:"90%",margin: "1rem 0.2rem", border: "1px solid black", }} ></Divider> */}
+        <Typography sx={{ color: "red", p: "0.2rem" }}>{error}</Typography>
+        {/* Second Row */}
+        <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", p: "0.5rem", gap: "0.5rem", width: "100%" }} >
+            <Box
+                sx={{
+                    display: "flex", alignItems: "center",
+                    "div & *": { fontSize: "1.5rem", p: "0.5rem", borderRadius: "0.9rem" },
+                    "div & :hover": { background: "lightgray" }
+                }}>
+                <PhotoCameraOutlinedIcon />
+                <ImageOutlinedIcon />
+                <AttachFileOutlinedIcon />
+                <LocationOnOutlinedIcon />
+                <SentimentSatisfiedOutlinedIcon />
             </Box>
-            {/* <Divider sx={{ width:"90%",margin: "1rem 0.2rem", border: "1px solid black", }} ></Divider> */}
-            <Typography sx={{ color: "red", p: "0.2rem" }}>{error}</Typography>
-            {/* Second Row */}
-            <Box display="flex" alignItems="center" justifyContent="space-between" p="0.5rem" gap="0.5rem" width="100%" >
-                <Box display="flex" alignItems="center"
-                    sx={{
-                        "div & *": { fontSize: "1.5rem", p: "0.5rem", borderRadius: "0.9rem" },
-                        "div & :hover": { background: "lightgray" }
-                    }}>
-                    <PhotoCameraOutlinedIcon />
-                    <ImageOutlinedIcon />
-                    <AttachFileOutlinedIcon />
-                    <LocationOnOutlinedIcon />
-                    <SentimentSatisfiedOutlinedIcon />
-                </Box>
-                {showProgress ? <CircularProgress /> : undefined}
-                <Button type="submit" onClick={handleMakePost} display="flex" alignItems="center" justifyContent="center" gap="0.2rem" p="0.5rem" bgcolor="lightblue" borderRadius="1rem" sx={{ textTransform: "capitalize", borderRadius: "1rem", ":hover": { background: "lightgray", cursor: "pointer" } }} >
-                    <SendOutlinedIcon />
-                    <Typography fontFamily="monospace">Tweet</Typography>
-                </Button>
-            </Box>
-        </Box >
-    </>
+            {showProgress ? <CircularProgress /> : undefined}
+            <Button type="submit" onClick={handleMakePost} sx={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "0.2rem", p: "0.5rem", bgcolor: "lightblue", borderRadius: "1rem", textTransform: "capitalize", ":hover": { background: "lightgray", cursor: "pointer" } }} >
+                <SendOutlinedIcon />
+                <Typography fontFamily="monospace">Tweet</Typography>
+            </Button>
+        </Box>
+    </Box >
 }
 export default MakePost;    

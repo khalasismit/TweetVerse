@@ -1,8 +1,8 @@
-import { Alert, Avatar, Box, Button, Snackbar, Typography } from "@mui/material"
-import { useDispatch } from "react-redux"
-import { Link, useNavigate } from "react-router-dom"
-import { setLogout } from "../../redux/reducers"
-import { useState } from "react"
+import { Alert, Avatar, Box, Button, Snackbar, Typography } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { setLogout } from "../../redux/reducers";
+import { useState } from "react";
 const Navigate = ({ plateformName }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -19,7 +19,7 @@ const Navigate = ({ plateformName }) => {
         <Snackbar
             open={snackbar}
             varient="filled"
-            autoHideDuration={3000}
+            autoHideDuration={1500}
             anchorOrigin={{ vertical:'bottom', horizontal: "left" }}
         ><Alert variant="filled" severity="success">Log out </Alert></Snackbar>
 
