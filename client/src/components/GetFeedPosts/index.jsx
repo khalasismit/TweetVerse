@@ -23,8 +23,6 @@ const GetFeedPosts = () => {
     }
     // eslint-disable-next-line
     , []);
-    // hh
-    
     return <Box sx={{display:"flex",flexDirection:"column-reverse",justifyContent:"center",width:"100%",alignItems:"center"}}>
             {
                 posts.map(({ _id, firstName, lastName, location, post }) => (

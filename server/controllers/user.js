@@ -12,8 +12,9 @@ export const getUser = async (req, res) => {
 
 export const searchUser = async (req,res)=>{
   try {
-    const { firstName } = req.params;
-    const user = await User.find({firstName : firstName});
+    const { search } = req.params;
+    const SearchText = new RegExp(`^${search}`,'i')
+    const user = await User.find({firstName : SearchText });
     res.status(200).json(user);
   } catch (error) {
     res.status(404).json({error})

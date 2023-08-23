@@ -7,7 +7,7 @@ import helmet from "helmet";
 import morgan from "morgan";
 import { login, register } from "./controllers/auth.js";
 import { createPost, deletePost, getFeedPosts, getUserPosts } from "./controllers/posts.js";
-import { getUser } from "./controllers/user.js";
+import { getUser, searchUser } from "./controllers/user.js";
 import { verifyToken } from "./middleware/verifyToken.js";
 /* CONFIGURATIONS */
 dotenv.config();
@@ -28,6 +28,7 @@ app.post("/posts",verifyToken,createPost);
 app.get("/posts",verifyToken,getFeedPosts);
 app.get("/posts/:userId/posts",verifyToken,getUserPosts);
 app.get("/posts/:userId/posts/:id",verifyToken,deletePost);
+app.get("/:search",verifyToken,searchUser);
 
 /* MONGOOSE SETUP */
 const PORT = process.env.PORT || 3002;
