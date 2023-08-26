@@ -51,7 +51,7 @@ const MakePost = () => {
         }
     }
 
-    return <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", p: "1rem", m: "1rem 0.5rem", textAlign: "center", width: isNonMobile ? "40%" : "90%", boxShadow: "0px 0px 10px 0px black", borderRadius: "1rem" }} >
+    return <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", p: "1rem", m: "1rem 0.5rem", textAlign: "center", width: isNonMobile ? "40%" : "90%", boxShadow: "0px 0px 3px 0px black", borderRadius: "1rem" }} >
         {/* First Row */}
         <Box display="flex" alignItems="center" gap="0.5rem" width="100%">
             <Avatar></Avatar>

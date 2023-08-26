@@ -265,7 +265,7 @@ const Form = () => {
                                 <Button
                                     type="submit"
                                     sx={{
-                                        border: "1px solid black",
+                                        // border: "1px solid black",
                                         borderRadius: "2rem",
                                         m: "1.5rem 0rem",
                                         p: "1rem 20%",
