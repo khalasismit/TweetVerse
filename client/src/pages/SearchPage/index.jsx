@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import { Box, TextField, useMediaQuery } from "@mui/material"
 import SearchIcon from '@mui/icons-material/Search';
 import SearchFeed from "../../components/SearchFeed";
-import { useEffect } from "react";
 const SearchPage = () => {
     const isNonMobile = useMediaQuery("(min-width:600px)")
     const [feed, setFeed] = useState([]);
@@ -18,9 +17,6 @@ const SearchPage = () => {
         const data = await searchRes.json();
         setFeed(data);
     }
-    useEffect(() => {
-        console.log(feed) //eslint-disable-line
-    }, [feed]);
     return <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
         <Navigate plateformName={"TweetVerse"}></Navigate>
         <Box sx={{ display: "flex", alignItems: "center", gap: "0.2rem", m: "1rem", width: isNonMobile ? "40%" : "90%" }}>

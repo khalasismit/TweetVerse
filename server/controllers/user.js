@@ -14,7 +14,7 @@ export const searchUser = async (req, res) => {
   try {
     const { search } = req.params;
     const SearchText = new RegExp(`^${search}`, 'i')
-    const user = await User.find({ firstName: SearchText });
+    const user = await User.find({$or:[{ firstName: SearchText },{lastName:SearchText}]}).sort({firstName: 1});
     res.status(200).json(user);
   } catch (error) {
     res.status(404).json({ error })
