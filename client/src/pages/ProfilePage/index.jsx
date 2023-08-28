@@ -1,4 +1,4 @@
-import { Box, Divider } from "@mui/material";
+import { Box } from "@mui/material";
 import Profile from "../../components/Profile";
 import { useEffect, useState } from "react";
 import GetUserPost from "../../components/GetUserPosts";
@@ -6,10 +6,11 @@ import Navigate from "../../components/Navigate";
 import { useSelector } from "react-redux";
 import EditProfile from "../../components/EditProfile";
 const ProfilePage = ({ plateformName }) => {
-
     const [user, setUser] = useState([]);
-    const { _id } = useSelector((state) => state.user);
-    const token = useSelector((state) => state.token)
+    const USER =  useSelector((state) => state.user);
+    const { _id } = USER;
+    
+    const token = useSelector((state) => state.token);
     //set usersData
     const getUser = async () => {
         const response = await fetch(`http://localhost:3001/users/${_id}/`, {
@@ -21,8 +22,9 @@ const ProfilePage = ({ plateformName }) => {
     }
 
     useEffect(() => {
-        getUser()
-    }, []);// eslint-disable-line
+        getUser();
+        // eslint-disable-next-line
+    }, [USER]);
 
     if (!user) {
         return null;
@@ -41,7 +43,7 @@ const ProfilePage = ({ plateformName }) => {
         <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" width="100%" >
             <Box  sx={{ m: "1rem 0", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", boxShadow: "0px 0px 3px 0px black", borderRadius: "1rem" }}>
                 <Profile firstName={firstName} lastName={lastName} location={location} bio={bio} email={email} />
-                <EditProfile />
+                <EditProfile firstName={firstName} lastName={lastName} location={location} bio={bio} />
             </Box>
             <GetUserPost />
         </Box>

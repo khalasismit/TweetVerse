@@ -1,4 +1,4 @@
-import { Box, Divider, Typography, useMediaQuery } from "@mui/material"
+import { Alert, Box, Divider, Snackbar, Typography, useMediaQuery } from "@mui/material"
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -6,7 +6,9 @@ import Dialog from '@mui/material/Dialog';
 import { Formik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { setLogin } from "../../redux/reducers";
-const EditProfile = () => {
+import { useState } from "react";
+const EditProfile = ({ firstName, lastName, bio, location }) => {
+    const [snackbar, setSnackbar] = useState(false)
     const isNonMobile = useMediaQuery("(min-width:600px)");
     const user = useSelector((state) => state.user);
     const token = useSelector((state) => state.token);
@@ -18,11 +20,8 @@ const EditProfile = () => {
     const handleClose = () => {
         setOpen(false);
     };
-    const initValues = {
-        firstName: user.firstName,
-        lastName: user.lastName,
-        location: user.location,
-        bio: user.bio,
+    const initialValues = {
+        firstName, lastName, bio, location
     }
     const handleFormSubmit = async (values, onSubmitProps) => {
         let savedUserRes = await fetch(`http://localhost:3001/editUser/${user._id}`,
@@ -33,25 +32,35 @@ const EditProfile = () => {
             }
         )
         let savedUser = await savedUserRes.json();
-        onSubmitProps.resetForm();
         if (savedUser) {
+            setSnackbar(true)
+            setTimeout(() => {
+                setSnackbar(false)
+            }, 1500);
             dispatch(
                 setLogin({
                     user: savedUser,
                     token: token,
                 })
             );
-            handleClose()
+            onSubmitProps.resetForm();
+            handleClose();
         }
     }
     return <Box p={"0rem 0rem 1rem 0rem"}>
+        <Snackbar
+            open={snackbar}
+            varient="filled"
+            autoHideDuration={1500}
+            anchorOrigin={{ vertical: 'bottom', horizontal: "left" }}
+        ><Alert variant="filled" severity="success">Profile Updated Successfully.</Alert></Snackbar>
         <Button sx={{ color: "black", bgcolor: "lightgrey", width: "100%", ":hover": { bgcolor: "darkgray" } }} onClick={handleClickOpen} >
             <Typography sx={{ fontFamily: "monospace", textTransform: "initial" }}>Edit Profile</Typography>
         </Button>
         <Dialog open={open} onClose={handleClose} sx={{ borderRadius: "1rem" }}>
             <Formik
                 onSubmit={handleFormSubmit}
-                initialValues={initValues}
+                initialValues={initialValues}
             >
                 {({
                     values,

@@ -1,6 +1,5 @@
 import { Avatar, Box, Divider, Typography } from "@mui/material";
 import { useMediaQuery } from "@mui/material";
-
 const Profile = ({ firstName, lastName, location, bio }) => {
     const isNonMobile = useMediaQuery("(min-width:600px)")
     return <Box width={isNonMobile ? "auto" : "80%"} sx={{ p: "0.5rem 2rem", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
