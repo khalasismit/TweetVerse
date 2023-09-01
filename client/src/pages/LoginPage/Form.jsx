@@ -137,7 +137,7 @@ const Form = () => {
                 setFieldValue,
                 resetForm,
             }) => (
-                <form onSubmit={handleSubmit} onChange={handleChange}>
+                <form autoComplete="on" onSubmit={handleSubmit} onChange={handleChange}>
                     <Snackbar
                         open={snackbar}
                         varient="filled"

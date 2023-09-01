@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 const GetFeedPosts = () => {
     const [posts, setPosts] = useState([]);
     const token = useSelector((state)=>state.token);
+    const POSTS = useSelector((state)=>state.posts);
     const getFeedPosts = async () => {
         const getFeedRes = await fetch("http://localhost:3001/posts", {
             method: "GET",
@@ -14,15 +15,15 @@ const GetFeedPosts = () => {
         const data = await getFeedRes.json();
         setPosts(data);
     }
-
+    
     useEffect(() => {
         getFeedPosts();
-        // setInterval(() => {
+        // setTimeout(() => {
         //     getFeedPosts();
-        // }, 3000);
+        // }, 1000);
     }
-    // eslint-disable-next-line
-    , []);
+    //     // eslint-disable-next-line
+        , [POSTS]);
     return <Box sx={{display:"flex",flexDirection:"column-reverse",justifyContent:"center",width:"100%",alignItems:"center"}}>
             {
                 posts.map(({ _id, firstName, lastName, location, post }) => (

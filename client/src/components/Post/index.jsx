@@ -5,36 +5,37 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Alert from "@mui/material/Alert";
 import Snackbar from "@mui/material/Snackbar";
+import { setPosts } from "../../redux/reducers";
 const Post = ({ userId, firstName, lastName, location, post, postId, deleteIcon }) => {
     const isNonMobile = useMediaQuery("(min-width:600px)")
+    const dispatch = useDispatch();
     const [isliked, setIsLiked] = useState(false);
     const [Post, setPost] = useState('');
     const [snackbar, setSnackbar] = useState(false);
-    const token = useSelector((state) => state.token)
+    const token = useSelector((state) => state.token);
     useEffect(() => {
         setPost(post);
     }, []); //eslint-disable-line   
     function changeLike() {
         setIsLiked(!isliked);
     }
-
     const deletePost = async () => {
         const deletePostRes = await fetch(`http://localhost:3001/posts/${userId}/posts/${postId}`, {
             method: "GET",
             headers: { Authorization: `Bearer ${token}` }
         })
+        const delPost = await deletePostRes.json();
         if (deletePostRes) {
             setSnackbar(true)
             setTimeout(() => {
                 setSnackbar(false)
+                dispatch(setPosts({posts : delPost}))
             }, 1500);
         }
-        // console.log(deletePostRes);
     }
-
     return <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center" }} p="0.5rem 1rem" m="0.5rem" width={isNonMobile ? "40%" : "90%"} boxShadow="0px 0px 3px 0px black" borderRadius="1rem">
         <Snackbar
             open={snackbar}
@@ -67,12 +68,15 @@ const Post = ({ userId, firstName, lastName, location, post, postId, deleteIcon 
             <Box sx={{ display: 'flex', alignItems: "center", justifyContent: "space-between", boxShadow: "0px 0px 2px 0px black", borderRadius: "1rem", width: "100%" }} >
                 <Button m="0 0.3rem" p="0.2rem" gap="0.2rem" sx={{ display: "flex", alignItems: "center", textTransform: "initial", borderRadius: "1rem", color: "black" }} onClick={changeLike}>
                     {isliked ? <FavoriteIcon sx={{ color: "red" }} /> : <FavoriteBorderOutlinedIcon />}
+                    Like
                 </Button>
                 <Button m="0 0.3rem" p="0.2rem" gap="0.2rem" sx={{ display: "flex", alignItems: "center", textTransform: "initial", borderRadius: "1rem", color: "black" }}>
                     <CommentOutlinedIcon />
+                    Comment
                 </Button>
                 <Button m="0 0.3rem" p="0.2rem" gap="0.2rem" sx={{ display: "flex", alignItems: "center", textTransform: "initial", borderRadius: "1rem", color: "black" }}>
                     <ShareOutlinedIcon />
+                    share
                 </Button>
             </Box>
         </Box>

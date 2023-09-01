@@ -45,8 +45,8 @@ export const getUserPosts = async (req, res) => {
 export const deletePost = async (req,res) =>{
   try {
       const { userId , id } = req.params;
-      await Post.findByIdAndDelete({userId:userId,_id:id}); 
-      res.status(200).json("POST DELETED")
+      const Posts = await Post.findByIdAndDelete({userId:userId,_id:id}); 
+      res.status(200).json(Posts)
   } catch (error) {
     res.status(404).json(error)
   }

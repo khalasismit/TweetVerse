@@ -6,7 +6,8 @@ import { useSelector } from "react-redux";
 const GetUserPost = () => {
     const userId = useSelector((state)=>state.user._id)
     const token = useSelector((state)=>state.token)
-    const [posts,setPosts] = useState([])    
+    const [posts,setPosts] = useState([])   
+    const POSTS = useSelector((state)=> state.posts) 
     const getUserPost = async ()=>{
         const getUserPostRes = await fetch(`http://localhost:3001/posts/${userId}/posts`,{
             method:"GET",
@@ -18,7 +19,7 @@ const GetUserPost = () => {
     useEffect(()=>{
         getUserPost();
     }//eslint-disable-next-line
-    ,[])
+    ,[POSTS])
     return <Box sx={{width:"100%",display:'flex',alignItems:"center",justifyContent:"center",flexDirection:"column-reverse"}}>
         {
             posts.map(({ _id, firstName, lastName, location, post }) => (

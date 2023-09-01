@@ -72,7 +72,7 @@ const EditProfile = ({ firstName, lastName, bio, location }) => {
                     setFieldValue,
                     resetForm,
                 }) => (
-                    <form onSubmit={handleSubmit}>
+                    <form autoComplete="on" onSubmit={handleSubmit}>
                         <Typography textAlign="center" m="1rem" fontFamily="monospace" fontSize="1.7rem" fontWeight="bold">
                             Edit Profile
                         </Typography>

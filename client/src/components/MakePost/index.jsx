@@ -6,12 +6,14 @@ import SentimentSatisfiedOutlinedIcon from '@mui/icons-material/SentimentSatisfi
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setPosts } from "../../redux/reducers";
 // import { GetUser } from "../../redux/auth";
 const MakePost = () => {
     // const { id, token } = GetUser();
     const { _id } = useSelector((state) => state.user);
     const token = useSelector((state) => state.token);
+    const dispatch = useDispatch();
     // console.log(_id,token)
     function handleChange(event) {
         setDescription(event.target.value);
@@ -47,7 +49,15 @@ const MakePost = () => {
         });
         const savedPost = await savedPostRes.json();
         if (savedPost) {
-            setDescription(""); 
+            setTimeout(() => {
+                dispatch(
+                    setPosts({
+                        posts : savedPost
+                    })    
+                    )
+                }, 1500);
+
+            setDescription("");
         }
     }
 
@@ -57,7 +67,6 @@ const MakePost = () => {
             <Avatar></Avatar>
             <TextField multiline fullWidth sx={{ border: "1px solid black", m: "0", p: "0", borderRadius: "0.5rem" }} placeholder="What's in your mind?" value={description} onChange={handleChange} />
         </Box>
-        {/* <Divider sx={{ width:"90%",margin: "1rem 0.2rem", border: "1px solid black", }} ></Divider> */}
         <Typography sx={{ color: "red", p: "0.2rem" }}>{error}</Typography>
         {/* Second Row */}
         <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", p: "0.5rem", gap: "0.5rem", width: "100%" }} >

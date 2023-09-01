@@ -10,12 +10,15 @@ const SearchPage = () => {
     const token = useSelector(state => state.token);
     const [search, setSearch] = useState("");
     const handleSearch = async () => {
-        const searchRes = await fetch(`http://localhost:3001/${search}`, {
-            method: "GET",  
-            headers: { Authorization: `Bearer ${token}` }
-        });
-        const data = await searchRes.json();
-        setFeed(data);
+        if(search!=""){
+
+            const searchRes = await fetch(`http://localhost:3001/${search}`, {
+                method: "GET",  
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            const data = await searchRes.json();
+            setFeed(data);
+        }
     }
     return <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
         <Navigate plateformName={"TweetVerse"}></Navigate>
@@ -25,8 +28,7 @@ const SearchPage = () => {
         </Box>
         {
             feed.map(({_id,firstName,lastName}) => (
-                // <Typography>{item.firstName} {item.lastName}</Typography>
-                <SearchFeed key={_id} 
+            <SearchFeed key={_id} 
                 firstName={firstName}
                 lastName={lastName}
                 />
