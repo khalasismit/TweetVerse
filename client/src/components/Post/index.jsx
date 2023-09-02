@@ -3,49 +3,21 @@ import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlin
 import CommentOutlinedIcon from '@mui/icons-material/CommentOutlined';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import Alert from "@mui/material/Alert";
-import Snackbar from "@mui/material/Snackbar";
-import { setPosts } from "../../redux/reducers";
+
+import DeletePost from "../DeletePost";
 const Post = ({ userId, firstName, lastName, location, post, postId, deleteIcon }) => {
     const isNonMobile = useMediaQuery("(min-width:600px)")
-    const dispatch = useDispatch();
     const [isliked, setIsLiked] = useState(false);
     const [Post, setPost] = useState('');
-    const [snackbar, setSnackbar] = useState(false);
-    const token = useSelector((state) => state.token);
     useEffect(() => {
         setPost(post);
     }, []); //eslint-disable-line   
     function changeLike() {
         setIsLiked(!isliked);
     }
-    const deletePost = async () => {
-        const deletePostRes = await fetch(`http://localhost:3001/posts/${userId}/posts/${postId}`, {
-            method: "GET",
-            headers: { Authorization: `Bearer ${token}` }
-        })
-        const delPost = await deletePostRes.json();
-        if (deletePostRes) {
-            setSnackbar(true)
-            setTimeout(() => {
-                setSnackbar(false)
-                dispatch(setPosts({posts : delPost}))
-            }, 1500);
-        }
-    }
+   
     return <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center" }} p="0.5rem 1rem" m="0.5rem" width={isNonMobile ? "40%" : "90%"} boxShadow="0px 0px 3px 0px black" borderRadius="1rem">
-        <Snackbar
-            open={snackbar}
-            varient="filled"
-            autoHideDuration={3000}
-            anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
-        >
-            <Alert variant="filled" severity="success">Post Deleted Successfully.</Alert>
-        </Snackbar>
-
         <Box display="flex" justifyContent="space-between" width="100%">
             <Box sx={{ display: "flex", alignItems: "center", justifyContent: 'space-between' }} gap="1rem" p="0.5rem" m="0.2rem" >
                 <Avatar></Avatar>
@@ -54,7 +26,7 @@ const Post = ({ userId, firstName, lastName, location, post, postId, deleteIcon 
                     <Typography>{location}</Typography>
                 </Box>
             </Box>
-            <DeleteOutlineIcon sx={{ display: deleteIcon ? 'block' : 'none', p: "0.5rem", borderRadius: "1rem", ":hover": { bgcolor: "lightgray" } }} onClick={deletePost} />
+            <DeletePost deleteIcon={deleteIcon} userId={userId} postId={postId} />
         </Box>
         <Divider orientation="horizontal" sx={{ m: "0rem 0.5rem" }}></Divider>
         <Box display="flex" flexDirection="column" justifyContent="space-between" width="100%">

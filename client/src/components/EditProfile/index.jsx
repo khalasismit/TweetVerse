@@ -54,9 +54,11 @@ const EditProfile = ({ firstName, lastName, bio, location }) => {
             autoHideDuration={1500}
             anchorOrigin={{ vertical: 'bottom', horizontal: "left" }}
         ><Alert variant="filled" severity="success">Profile Updated Successfully.</Alert></Snackbar>
+        
         <Button sx={{ color: "black", bgcolor: "lightgrey", width: "100%", ":hover": { bgcolor: "darkgray" } }} onClick={handleClickOpen} >
             <Typography sx={{ fontFamily: "monospace", textTransform: "initial" }}>Edit Profile</Typography>
         </Button>
+
         <Dialog open={open} onClose={handleClose} sx={{ borderRadius: "1rem" }}>
             <Formik
                 onSubmit={handleFormSubmit}
