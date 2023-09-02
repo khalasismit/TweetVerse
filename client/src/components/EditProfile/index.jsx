@@ -12,7 +12,7 @@ const EditProfile = ({ firstName, lastName, bio, location }) => {
     const isNonMobile = useMediaQuery("(min-width:600px)");
     const user = useSelector((state) => state.user);
     const token = useSelector((state) => state.token);
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
     const dispatch = useDispatch();
     const handleClickOpen = () => {
         setOpen(true);
@@ -34,17 +34,17 @@ const EditProfile = ({ firstName, lastName, bio, location }) => {
         let savedUser = await savedUserRes.json();
         if (savedUser) {
             setSnackbar(true)
-            setTimeout(() => {
-                setSnackbar(false)
-            }, 1500);
             dispatch(
                 setLogin({
                     user: savedUser,
                     token: token,
                 })
             );
-            onSubmitProps.resetForm();
-            handleClose();
+            setTimeout(() => {
+                setSnackbar(false)
+                onSubmitProps.resetForm();
+                handleClose();
+            }, 1500);
         }
     }
     return <Box p={"0rem 0rem 1rem 0rem"}>
@@ -54,7 +54,7 @@ const EditProfile = ({ firstName, lastName, bio, location }) => {
             autoHideDuration={1500}
             anchorOrigin={{ vertical: 'bottom', horizontal: "left" }}
         ><Alert variant="filled" severity="success">Profile Updated Successfully.</Alert></Snackbar>
-        
+
         <Button sx={{ color: "black", bgcolor: "lightgrey", width: "100%", ":hover": { bgcolor: "darkgray" } }} onClick={handleClickOpen} >
             <Typography sx={{ fontFamily: "monospace", textTransform: "initial" }}>Edit Profile</Typography>
         </Button>

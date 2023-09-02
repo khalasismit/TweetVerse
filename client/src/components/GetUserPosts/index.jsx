@@ -18,8 +18,7 @@ const GetUserPost = () => {
     }
     useEffect(()=>{
         getUserPost();
-    }//eslint-disable-next-line
-    ,[POSTS])
+    },[POSTS])
     return <Box sx={{width:"100%",display:'flex',alignItems:"center",justifyContent:"center",flexDirection:"column-reverse"}}>
         {
             posts.map(({ _id, firstName, lastName, location, post }) => (

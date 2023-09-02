@@ -1,4 +1,4 @@
-import { Alert, Box, Button, Dialog, Snackbar, Typography, useMediaQuery } from "@mui/material"
+import { Alert, Box, Button, Dialog, Snackbar, Typography} from "@mui/material"
 import * as React from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
@@ -6,8 +6,6 @@ import { setPosts } from "../../redux/reducers";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 const DeletePost = ({ userId,postId,deleteIcon }) => {
     const [snackbar, setSnackbar] = useState(false)
-    const isNonMobile = useMediaQuery("(min-width:600px)");
-    const user = useSelector((state) => state.user);
     const token = useSelector((state) => state.token);
     const [open, setOpen] = React.useState(false);
     const dispatch = useDispatch();
@@ -28,8 +26,8 @@ const DeletePost = ({ userId,postId,deleteIcon }) => {
         if (deletePostRes) {
             setSnackbar(true)
             setTimeout(() => {
-                setSnackbar(false)
                 dispatch(setPosts({posts : delPost}))
+                setSnackbar(false)
             }, 1500);
         }
     }
