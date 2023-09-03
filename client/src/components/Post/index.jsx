@@ -17,7 +17,7 @@ const Post = ({ userId, firstName, lastName, location, post, postId, deleteIcon 
         setIsLiked(!isliked);
     }
    
-    return <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center" }} p="0.5rem 1rem" m="0.5rem" width={isNonMobile ? "40%" : "90%"} boxShadow="0px 0px 3px 0px black" borderRadius="1rem">
+    return <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center" }} p="0.5rem 1rem" m="0.5rem" width={isNonMobile ? "40%" : "90%"} boxShadow="0px 0px 3px 0px black" borderRadius="0.5rem">
         <Box display="flex" justifyContent="space-between" width="100%">
             <Box sx={{ display: "flex", alignItems: "center", justifyContent: 'space-between' }} gap="1rem" p="0.5rem" m="0.2rem" >
                 <Avatar></Avatar>
@@ -37,16 +37,16 @@ const Post = ({ userId, firstName, lastName, location, post, postId, deleteIcon 
                 </Typography>
             })}
             <Divider sx={{ m: "0.5rem 0rem" }}></Divider>
-            <Box sx={{ display: 'flex', alignItems: "center", justifyContent: "space-between", boxShadow: "0px 0px 2px 0px black", borderRadius: "1rem", width: "100%" }} >
-                <Button m="0 0.3rem" p="0.2rem" gap="0.2rem" sx={{ display: "flex", alignItems: "center", textTransform: "initial", borderRadius: "1rem", color: "black" }} onClick={changeLike}>
+            <Box sx={{ display: 'flex', alignItems: "center", justifyContent: "space-between", boxShadow: "0px 0px 2px 0px black", borderRadius: "0.5rem", width: "100%" }} >
+                <Button m="0 0.3rem" p="0.2rem" gap="0.2rem" sx={{ display: "flex", alignItems: "center", textTransform: "initial", borderRadius: "0.5rem", color: "black" }} onClick={changeLike}>
                     {isliked ? <FavoriteIcon sx={{ color: "red" }} /> : <FavoriteBorderOutlinedIcon />}
                     Like
                 </Button>
-                <Button m="0 0.3rem" p="0.2rem" gap="0.2rem" sx={{ display: "flex", alignItems: "center", textTransform: "initial", borderRadius: "1rem", color: "black" }}>
+                <Button m="0 0.3rem" p="0.2rem" gap="0.2rem" sx={{ display: "flex", alignItems: "center", textTransform: "initial", borderRadius: "0.5rem", color: "black" }}>
                     <CommentOutlinedIcon />
                     Comment
                 </Button>
-                <Button m="0 0.3rem" p="0.2rem" gap="0.2rem" sx={{ display: "flex", alignItems: "center", textTransform: "initial", borderRadius: "1rem", color: "black" }}>
+                <Button m="0 0.3rem" p="0.2rem" gap="0.2rem" sx={{ display: "flex", alignItems: "center", textTransform: "initial", borderRadius: "0.5rem", color: "black" }}>
                     <ShareOutlinedIcon />
                     share
                 </Button>

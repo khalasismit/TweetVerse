@@ -41,7 +41,7 @@ const ProfilePage = ({ plateformName }) => {
     return <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" width="100%" >
         <Navigate plateformName={plateformName} />
         <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" width="100%" >
-            <Box  sx={{ m: "1rem 0", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", boxShadow: "0px 0px 3px 0px black", borderRadius: "1rem" }}>
+            <Box  sx={{ m: "1rem 0", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", boxShadow: "0px 0px 3px 0px black", borderRadius: "0.5rem" }}>
                 <Profile firstName={firstName} lastName={lastName} location={location} bio={bio} email={email} />
                 <EditProfile firstName={firstName} lastName={lastName} location={location} bio={bio} />
             </Box>

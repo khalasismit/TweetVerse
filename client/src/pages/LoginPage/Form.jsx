@@ -266,7 +266,7 @@ const Form = () => {
                                     type="submit"
                                     sx={{
                                         // border: "1px solid black",
-                                        borderRadius: "2rem",
+                                        borderRadius: "1rem",
                                         m: "1.5rem 0rem",
                                         p: "1rem 20%",
                                         backgroundColor: "lightgray",

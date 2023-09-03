@@ -11,7 +11,7 @@ const LoginPage = () => {
   >
     <Box
       width="100%" bgcolor="white" boxShadow="0px 0px 10px 0px black"
-      borderRadius="1rem"
+      borderRadius="0.5rem"
       textAlign="center"
     >
       <Typography fontWeight="bold" fontFamily="monospace" fontSize="2rem" color="Black">

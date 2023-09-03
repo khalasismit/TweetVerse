@@ -27,10 +27,11 @@ const SearchPage = () => {
             <SearchIcon sx={{ borderRadius: "0.3rem", p: "0.4rem", ":hover": { bgcolor: "lightgray" } }} onClick={handleSearch} ></SearchIcon>
         </Box>
         {
-            feed.map(({_id,firstName,lastName}) => (
+            feed.map(({_id,firstName,lastName,bio}) => (
             <SearchFeed key={_id} 
                 firstName={firstName}
                 lastName={lastName}
+                bio={bio}
                 />
             ))
         }
