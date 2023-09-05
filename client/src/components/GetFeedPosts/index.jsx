@@ -18,7 +18,9 @@ const GetFeedPosts = () => {
 
     useEffect(() => {
         getFeedPosts()
-    },[POSTS]);
+    }
+    // eslint-disable-next-line
+    ,[POSTS]);
     return <Box sx={{ display: "flex", flexDirection: "column-reverse", justifyContent: "center", width: "100%", alignItems: "center" }}>
         {
             posts.map(({ _id, firstName, lastName, location, post }) => (

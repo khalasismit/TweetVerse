@@ -10,7 +10,7 @@ const SearchPage = () => {
     const token = useSelector(state => state.token);
     const [search, setSearch] = useState("");
     const handleSearch = async () => {
-        if(search!=""){
+        if(search!==""){
 
             const searchRes = await fetch(`http://localhost:3001/${search}`, {
                 method: "GET",  
