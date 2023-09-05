@@ -7,8 +7,11 @@ import helmet from "helmet";
 import morgan from "morgan";
 import { login, register } from "./controllers/auth.js";
 import { createPost, deletePost, getFeedPosts, getUserPosts } from "./controllers/posts.js";
-import { EditUser, getUser, searchUser } from "./controllers/user.js";
+import { DeleteUser, EditUser, getUser, getUsers, searchUser } from "./controllers/user.js";
 import { verifyToken } from "./middleware/verifyToken.js";
+
+// import authRoute from "./routes/auth.js"
+// import postsRoute from "./routes/posts.js"
 /* CONFIGURATIONS */
 dotenv.config();
 const app = express();
@@ -23,13 +26,22 @@ app.use(cors());
 /* ROUTES */
 app.post("/auth/register", register);
 app.post("/auth/login",login);
-app.get("/users/:id",verifyToken,getUser);
+
+// app.use('/auth',authRoute)
+
 app.post("/posts",verifyToken,createPost);
 app.get("/posts",verifyToken,getFeedPosts);
 app.get("/posts/:userId/posts",verifyToken,getUserPosts);
 app.get("/posts/:userId/posts/:id",verifyToken,deletePost);
-app.get("/:search",verifyToken,searchUser);
+
+// app.use('/posts',postsRoute)
+
+app.get("/users/:id",verifyToken,getUser);
+app.get("/users",getUsers);
+app.get("/s:search",verifyToken,searchUser);
 app.post("/edituser/:id",EditUser)
+app.post("/deleteuser/:id",DeleteUser)
+
 /* MONGOOSE SETUP */
 const PORT = process.env.PORT || 3002;
 
