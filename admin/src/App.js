@@ -14,7 +14,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={isAuth ? <Navigate to={"/AdminHome"}></Navigate> : <LoginPage plateformName={Name} />} />
-          <Route path="/AdminHome" element={isAuth ? <HomePage plateformName={Name} /> : <Navigate to={"/"}></Navigate>} />
+          <Route path="/AdminHome" element={isAuth ? <HomePage plateformName={Name} />   : <Navigate to={"/"}></Navigate>} />
           {/* <Route path="/profile" element={isAuth ? <ProfilePage plateformName={Name} /> : <Navigate to={"/"}></Navigate>}></Route> */}
           {/* <Route path="/search" element={isAuth ? <SearchPage plateformName={Name} /> : <Navigate to={"/"}></Navigate>}></Route> */}
         </Routes>

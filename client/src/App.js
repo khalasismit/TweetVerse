@@ -1,10 +1,10 @@
-// import AdminPanel from "./pages/AdminDashboard";
+// import AdminPanel from "./scenes/AdminDashboard";
 import { useSelector } from "react-redux";
-import HomePage from "./pages/HomePage";
-import LoginPage from "./pages/LoginPage";
-import ProfilePage from "./pages/ProfilePage";
+import Home from "./scenes/Home";
+import Login from "./scenes/Login";
+import Profile from "./scenes/Profile";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import SearchPage from "./pages/SearchPage";
+import Search from "./scenes/Search";
 function App() {
   const Name = "TweetVerse";
   const token = useSelector(state => state.token)
@@ -13,10 +13,10 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={isAuth ? <Navigate to={"/home"}></Navigate> : <LoginPage plateformName={Name} />} />
-          <Route path="/home" element={isAuth ? <HomePage plateformName={Name} /> : <Navigate to={"/"}></Navigate>} />
-          <Route path="/profile" element={isAuth ? <ProfilePage plateformName={Name} /> : <Navigate to={"/"}></Navigate>}></Route>
-          <Route path="/search" element={isAuth ? <SearchPage plateformName={Name} /> : <Navigate to={"/"}></Navigate>}></Route>
+          <Route path="/" element={isAuth ? <Navigate to={"/home"}></Navigate> : <Login plateformName={Name} />} />
+          <Route path="/home" element={isAuth ? <Home plateformName={Name} /> : <Navigate to={"/"}></Navigate>} />
+          <Route path="/profile" element={isAuth ? <Profile plateformName={Name} /> : <Navigate to={"/"}></Navigate>}></Route>
+          <Route path="/search" element={isAuth ? <Search plateformName={Name} /> : <Navigate to={"/"}></Navigate>}></Route>
           {/* <Route path="/Admin" element={<AdminPanel/>} /> */}
         </Routes>
       </BrowserRouter>

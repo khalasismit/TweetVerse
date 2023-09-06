@@ -1,16 +1,13 @@
 import { Box, Typography } from "@mui/material"
 import { useEffect, useState } from "react";
 import { DataGrid } from '@mui/x-data-grid';
-import { useDispatch, useSelector } from "react-redux";
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import { setUsers } from "../../redux/reducers";
+import { useSelector } from "react-redux";
+import DeleteUser from "../DeleteUser";
 
 const Users = () => {
     const USERS = useSelector(state => state.users)
     const POSTS = useSelector(state => state.posts)
     const [users, setUser] = useState([]);
-    const dispatch = useDispatch()
-    // const [id, setId] = useState("");
     const getRowId = (user) => {
         return user._id
     }
@@ -26,10 +23,11 @@ const Users = () => {
         { field: 'location', headerName: 'Location', minWidth: 150, flex: 1 },
         {
             field: '',
-            headerName: '',
+            headerName: 'Actions',
             flex: 1,
-            renderCell: (params) => (
-                <DeleteOutlineIcon onClick={()=>{handleDelete(params.row)}} />
+            renderCell: (params) => (<>
+            <DeleteUser params={params}></DeleteUser>
+            </>
             ),
         }
     ];
@@ -40,33 +38,17 @@ const Users = () => {
         const data = await getUsersRes.json();
         setUser(data);
     }
-    const handleDelete = async (userToDelete) => {
-        // console.log(id) 
-        const id = userToDelete._id
-        const deleteUser = await fetch(`http://localhost:3001/deleteuser/${id}`, {
-            method: "POST",
-        })
-        const deluser = await deleteUser.json();
-        console.log(deluser)
-        if (deluser) {
-            dispatch(
-                setUsers({
-                    users: deluser
-                })
-            )
-        }
-    }
     useEffect(() => {
         getUsers()
     }
-        //  eslint-disable-next-line
+        // eslint-disable-next-line
         , [USERS, POSTS]);
+
+
 
     return <Box>
         <Typography sx={{ m: '1.5rem', fontSize: "1.5rem", fontWeight: "bold" }}>Users</Typography>
-
         <DataGrid sx={{ m: '1.5rem' }}
-            checkboxSelection
             rowSelection
             getRowId={getRowId}
             rows={users}
