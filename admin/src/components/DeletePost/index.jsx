@@ -40,7 +40,7 @@ const DeletePost = ({ params }) => {
         }
     }
 
-    return <>
+    return <Box p={"1rem"} sx={{":hover":{background:"lightgray",borderRadius:"1rem"}}}>
         <Snackbar
             // sx={{position:"fixed",bottom:"0"}}
             open={snackbar}
@@ -52,7 +52,7 @@ const DeletePost = ({ params }) => {
         </Snackbar>
         <DeleteOutlineIcon onClick={handleClickOpen} />
         <Dialog open={open} onClose={handleClose} sx={{ borderRadius: "1rem" }}>
-            <Typography textAlign="center" m="1rem" fontFamily="monospace" fontSize="1.2rem" fontWeight="bold">Are you sure? You want to this post.</Typography>
+            <Typography textAlign="center" m="1rem" fontFamily="monospace" fontSize="1.2rem" fontWeight="bold">Are you sure? You want to delete this post.</Typography>
             <Box display="flex"
                 justifyContent="center"
                 alignItems="center"
@@ -91,6 +91,6 @@ const DeletePost = ({ params }) => {
                 </Button>
             </Box>
         </Dialog>
-    </>
+    </Box>
 }
 export default DeletePost

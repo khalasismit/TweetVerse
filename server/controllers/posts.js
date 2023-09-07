@@ -39,6 +39,19 @@ export const getUserPosts = async (req, res) => {
     res.status(404).json({ message: err.message });
   }
 }; 
+// Update Post 
+
+export const updatePost = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { post } = req.body;
+    const POST = await Post.findByIdAndUpdate({_id:id},{post:post}); 
+    res.status(200).json(POST);
+  } catch (err) {
+    res.status(404).json({ message: err.message });
+  }
+}; 
+
 
 // Delete Post 
 

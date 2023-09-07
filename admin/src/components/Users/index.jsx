@@ -3,10 +3,10 @@ import { useEffect, useState } from "react";
 import { DataGrid } from '@mui/x-data-grid';
 import { useSelector } from "react-redux";
 import DeleteUser from "../DeleteUser";
+import EditUser from "../EditUser";
 
 const Users = () => {
-    const USERS = useSelector(state => state.users)
-    const POSTS = useSelector(state => state.posts)
+    const USERS = useSelector((state) => state.users)
     const [users, setUser] = useState([]);
     const getRowId = (user) => {
         return user._id
@@ -25,9 +25,10 @@ const Users = () => {
             field: '',
             headerName: 'Actions',
             flex: 1,
-            renderCell: (params) => (<>
-            <DeleteUser params={params}></DeleteUser>
-            </>
+            renderCell: (params) => (<Box style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                <DeleteUser params={params}></DeleteUser>
+                <EditUser params={params}></EditUser>
+            </Box>
             ),
         }
     ];
@@ -39,12 +40,8 @@ const Users = () => {
         setUser(data);
     }
     useEffect(() => {
-        getUsers()
-    }
-        // eslint-disable-next-line
-        , [USERS, POSTS]);
-
-
+        getUsers();
+    },[USERS]);
 
     return <Box>
         <Typography sx={{ m: '1.5rem', fontSize: "1.5rem", fontWeight: "bold" }}>Users</Typography>

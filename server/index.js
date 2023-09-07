@@ -6,7 +6,7 @@ import dotenv from "dotenv";
 import helmet from "helmet";
 import morgan from "morgan";
 import { login, register } from "./controllers/auth.js";
-import { createPost, deletePost, getFeedPosts, getUserPosts } from "./controllers/posts.js";
+import { createPost, deletePost, getFeedPosts, getUserPosts, updatePost } from "./controllers/posts.js";
 import { DeleteUser, EditUser, getUser, getUsers, searchUser } from "./controllers/user.js";
 import { verifyToken } from "./middleware/verifyToken.js";
 
@@ -35,14 +35,14 @@ app.post("/posts",verifyToken,createPost);
 app.get("/posts",getFeedPosts);
 app.get("/posts/:userId/posts",verifyToken,getUserPosts);
 app.get("/posts/:userId/posts/:id",verifyToken,deletePost);
-
+app.post("/editpost/:id",updatePost);
 // app.use('/posts',postsRoute)
 
 app.get("/users/:id",verifyToken,getUser);
 app.get("/users",getUsers);
-app.get("/s:search",verifyToken,searchUser);
-app.post("/edituser/:id",EditUser)
-app.post("/deleteuser/:id",DeleteUser)
+app.get("/:search",verifyToken,searchUser);
+app.post("/edituser/:id",EditUser);
+app.post("/deleteuser/:id",DeleteUser);
 
 /* MONGOOSE SETUP */
 const PORT = process.env.PORT || 3002;

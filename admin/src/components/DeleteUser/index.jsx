@@ -4,7 +4,7 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { Alert, Box, Button, Dialog, Snackbar, Typography } from "@mui/material"
 import { useState } from "react";
 
-const DeleteUser = ({params}) => {
+const DeleteUser = ({ params }) => {
     const [snackbar, setSnackbar] = useState(false)
     const [open, setOpen] = useState(false);
     const dispatch = useDispatch()
@@ -36,7 +36,7 @@ const DeleteUser = ({params}) => {
             }, 1500);
         }
     }
-    return <>
+    return <Box p={"1rem"} sx={{ ":hover": { background: "lightgray", borderRadius: "1rem" } }}>
         <Snackbar
             open={snackbar}
             varient="filled"
@@ -45,9 +45,9 @@ const DeleteUser = ({params}) => {
         >
             <Alert variant="filled" severity="success">User Deleted Successfully.</Alert>
         </Snackbar>
-        <DeleteOutlineIcon onClick={handleClickOpen}/>
+        <DeleteOutlineIcon onClick={handleClickOpen} />
         <Dialog open={open} onClose={handleClose} sx={{ borderRadius: "1rem" }}>
-            <Typography textAlign="center" m="1rem" fontFamily="monospace" fontSize="1.2rem" fontWeight="bold">Are you sure? You want to this user.</Typography>
+            <Typography textAlign="center" m="1rem" fontFamily="monospace" fontSize="1.2rem" fontWeight="bold">Are you sure? You want to delete this user.</Typography>
             <Box display="flex"
                 justifyContent="center"
                 alignItems="center"
@@ -86,6 +86,6 @@ const DeleteUser = ({params}) => {
                 </Button>
             </Box>
         </Dialog>
-    </>
+    </Box>
 }
 export default DeleteUser
