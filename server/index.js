@@ -6,8 +6,8 @@ import dotenv from "dotenv";
 import helmet from "helmet";
 import morgan from "morgan";
 import { login, register } from "./controllers/auth.js";
-import { createPost, deletePost, getFeedPosts, getUserPosts, updatePost } from "./controllers/posts.js";
-import { DeleteUser, EditUser, getUser, getUsers, searchUser } from "./controllers/user.js";
+import { createPost, deletePost, getFeedPosts, getTotalPost, getUserPosts, updatePost } from "./controllers/posts.js";
+import { DeleteUser, EditUser, getTotalUser, getUser, getUsers, searchUser } from "./controllers/user.js";
 import { verifyToken } from "./middleware/verifyToken.js";
 
 // Error in fetch api if use routes/
@@ -36,10 +36,12 @@ app.get("/posts",getFeedPosts);
 app.get("/posts/:userId/posts",verifyToken,getUserPosts);
 app.get("/posts/:userId/posts/:id",verifyToken,deletePost);
 app.post("/editpost/:id",updatePost);
+app.get("/getTotalPosts",getTotalPost)
 // app.use('/posts',postsRoute)
 
 app.get("/users/:id",verifyToken,getUser);
 app.get("/users",getUsers);
+app.get("/getTotalUser",getTotalUser)
 app.get("/:search",verifyToken,searchUser);
 app.post("/edituser/:id",EditUser);
 app.post("/deleteuser/:id",DeleteUser);

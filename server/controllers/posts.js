@@ -39,6 +39,14 @@ export const getUserPosts = async (req, res) => {
     res.status(404).json({ message: err.message });
   }
 }; 
+export const getTotalPost = async (req,res)=>{
+  try {
+    const totalPosts = await Post.count()
+    res.status(200).json(totalPosts);
+  } catch (err) {
+    res.status(404).json({ message: err.message });
+  }
+}
 // Update Post 
 
 export const updatePost = async (req, res) => {

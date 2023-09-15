@@ -19,6 +19,24 @@ export const getUsers = async (req,res) =>{
   }
 }
 
+export const getTotalUser = async(req,res)=>{
+  try {
+    const totalUser = await User.count()
+    res.status(200).json(totalUser)
+  } catch (err) {
+    res.status(404).json({ message: err.message });
+  }
+}
+
+export const recentUsers = async(req,res)=>{
+  try {
+    const recents = await User.find().limit(10)
+    res.status(200).json(recents)
+  } catch (err) {
+    res.status(404).json({ message: err.message });
+  }
+} 
+
 export const searchUser = async (req, res) => {
   try {
     const { search } = req.params;
