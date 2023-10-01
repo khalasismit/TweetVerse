@@ -109,7 +109,7 @@ const Form = () => {
             );
             setTimeout(() => {
                 setSnackbar(false)
-                navigate("/AdminHome");
+                navigate("/admin");
             }, 1500); 
         }
         else {
