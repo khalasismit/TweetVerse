@@ -22,7 +22,7 @@ export const getUsers = async (req,res) =>{
 export const getTotalUser = async(req,res)=>{
   try {
     const totalUser = await User.count()
-    res.status(200).json(totalUser)
+    res.status(200).json(totalUser);
   } catch (err) {
     res.status(404).json({ message: err.message });
   }

@@ -23,7 +23,7 @@ const EditPost = ({ params }) => {
         firstName: params.row.firstName, lastName: params.row.lastName, post: params.row.post
     }
     const handleFormSubmit = async (values, onSubmitProps) => {
-        let savedPostRes = await fetch(`http://localhost:3001/editpost/${params.row._id}`,
+        let savedPostRes = await fetch(`http://localhost:3001/posts/editpost/${params.row._id}`,
             {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },

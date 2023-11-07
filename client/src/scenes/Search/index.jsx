@@ -11,8 +11,7 @@ const SearchPage = () => {
     const [search, setSearch] = useState("");
     const handleSearch = async () => {
         if(search!==""){
-
-            const searchRes = await fetch(`http://localhost:3001/${search}`, {
+            const searchRes = await fetch(`http://localhost:3001/users/search/${search}/`, {
                 method: "GET",  
                 headers: { Authorization: `Bearer ${token}` }
             });
@@ -26,7 +25,7 @@ const SearchPage = () => {
             <TextField size="small" placeholder="" label="Search" sx={{ width: "100%" }} inputMode="search" value={search} onChange={(e)=> setSearch(e.target.value)}></TextField>
             <SearchIcon sx={{ borderRadius: "0.3rem", p: "0.4rem", ":hover": { bgcolor: "lightgray" } }} onClick={handleSearch} ></SearchIcon>
         </Box>
-        {
+        {/* {
             feed.map(({_id,firstName,lastName,bio}) => (
             <SearchFeed key={_id} 
                 firstName={firstName}
@@ -34,7 +33,21 @@ const SearchPage = () => {
                 bio={bio}
                 />
             ))
-        }
+        } */}
+        {
+  Array.isArray(feed) && feed.length > 0 ? (
+    feed.map(({ _id, firstName, lastName, bio }) => (
+      <SearchFeed
+        key={_id}
+        firstName={firstName}
+        lastName={lastName}
+        bio={bio}
+      />
+    ))
+  ) : (
+    <p>No search results found.</p> // Display a message when there are no results.
+  )
+}
     </Box>
 }
 export default SearchPage

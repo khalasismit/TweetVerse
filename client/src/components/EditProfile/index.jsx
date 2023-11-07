@@ -24,7 +24,7 @@ const EditProfile = ({ firstName, lastName, bio, location }) => {
         firstName, lastName, bio, location
     }
     const handleFormSubmit = async (values, onSubmitProps) => {
-        let savedUserRes = await fetch(`http://localhost:3001/editUser/${user._id}`,
+        let savedUserRes = await fetch(`http://localhost:3001/users/editUser/${user._id}`,
             {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },

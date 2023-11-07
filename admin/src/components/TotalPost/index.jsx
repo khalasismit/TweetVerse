@@ -7,7 +7,7 @@ const TotalPost = () =>{
     const POSTS = useSelector((state)=>state.posts)
     const [count,setCount] = useState(null)
     const getTotalPosts = async () =>{
-        const totalPostRes = await fetch(`http://localhost:3001/getTotalPosts`,{
+        const totalPostRes = await fetch(`http://localhost:3001/posts/getTotalPosts`,{
             method:"GET"
         }) 
         const data = await totalPostRes.json();

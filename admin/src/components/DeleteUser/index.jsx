@@ -18,7 +18,7 @@ const DeleteUser = ({ params }) => {
     const handleDelete = async (userToDelete) => {
         // console.log(id) 
         const id = userToDelete._id
-        const deleteUser = await fetch(`http://localhost:3001/deleteuser/${id}`, {
+        const deleteUser = await fetch(`http://localhost:3001/users/deleteuser/${id}`, {
             method: "POST",
         })
         const deluser = await deleteUser.json();
